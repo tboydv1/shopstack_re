@@ -14,5 +14,5 @@ public interface BusinessUserDao {
 
 	BusinessUser loadUserById(int businessUserId);
 	
-
+	BusinessUser findByToken(String token);
 }

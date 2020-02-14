@@ -1,7 +1,5 @@
 package com.shopstack.controller.event;
 
-import java.util.UUID;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -11,7 +9,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import com.shopstack.entities.businessuser.BusinessUser;
-import com.shopstack.service.businessuser.BussinessUserService;
 
 @Component
 public class RegistrationListner implements ApplicationListener<OnRegistrationCompleteEvent> {
@@ -23,12 +20,8 @@ public class RegistrationListner implements ApplicationListener<OnRegistrationCo
 	
 	@Autowired
 	private JavaMailSender mailSender;
-	
-	@Autowired
-	private BussinessUserService userServiceImpl;
-	
-	
-	
+
+		
 	@Override
 	public void onApplicationEvent(OnRegistrationCompleteEvent event) {
 		// TODO Auto-generated method stub
@@ -44,10 +37,8 @@ public class RegistrationListner implements ApplicationListener<OnRegistrationCo
 		
 		//generate token for user
 		BusinessUser businessUser = event.getUser();
-		String token = UUID.randomUUID().toString();
+		String token = businessUser.getToken();
 		
-		//save verification token to the database	 
-//		userServiceImpl.createVerificationTokenForUser(businessUser, token);
 		
 		//create confimation url
 		String recepientAddress = businessUser.getEmail();
@@ -55,7 +46,7 @@ public class RegistrationListner implements ApplicationListener<OnRegistrationCo
 		String confirmationUrl = event.getAppUrl() + "/user/confirm?token="+token;
         String message = messages.getMessage(
         		"Thank you for signing up to shopstack"
-        		+ "/n"
+        		+ "\n"
         		+ "click the link below to verify your account\n ", null, event.getLocale());		
 		//send email
 		SimpleMailMessage email = new SimpleMailMessage();

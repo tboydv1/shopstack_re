@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`ss_user` (
   `ss_date_joined` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ss_password` VARCHAR(45) NOT NULL,
   `ss_enabled` TINYINT(1) NOT NULL,
+  `ss_token` VARCHAR(100) NOT NULL,
   `ss_status` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`ss_user_id`, `ss_email`),
   INDEX `index2` (`ss_email` ASC))

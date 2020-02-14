@@ -24,7 +24,7 @@ import com.shopstack.entities.role.Role;
  *
  */
 
-@Sql(scripts= {"classpath:/db/shopstack-create-db.sql"})
+@Sql(scripts= {"classpath:/db/shopstack-create-db.sql", "classpath:/db/insert-users.sql"})
 @ContextConfiguration(classes= DataContextConfig.class)	
 @RunWith(SpringRunner.class)
 public class BusinessUserDaoImplTest {
@@ -58,6 +58,7 @@ public class BusinessUserDaoImplTest {
 		BusinessUser tempUser = new BusinessUser("Oluwatobi", "Omotosho", "tboydv1@gmail.com",
 				"070598584784", "testpass");
 		tempUser.addUserRoles(userRole);
+		tempUser.setToken("testtoken45");
 		
 		logger.info("Saving new user to the database");
 		businessUserDaoImpl.saveUser(tempUser);
@@ -77,6 +78,15 @@ public class BusinessUserDaoImplTest {
 		BusinessUser tempUser = null;
 		assertThrows(NullPointerException.class,  ()-> businessUserDaoImpl.saveUser(tempUser));
 		
+	}
+	
+	
+	@Test
+	public void findUserByToken() {
+		
+		BusinessUser user = businessUserDaoImpl.findByToken("testtoken1");
+		
+		assertNotNull(user);
 	}
 	
 	

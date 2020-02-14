@@ -1,5 +1,6 @@
 package com.shopstack.service.businessuser;
 
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,29 +22,11 @@ public class BussinessUserServiceImpl implements BussinessUserService{
 	@Autowired
 	private BusinessUserDao bussinessUserDaoImpl;
 	
-	@Autowired
-//	TokenDao tokenRepository;
-//	
-//	@Override
-//	public void createVerificationTokenForUser(BusinessUser businessUser, String token) {
-//		
-//		 VerificationToken myToken = new VerificationToken(token, businessUser);
-//	      tokenRepository.saveToken(myToken);
-//		
-//	}
-
-//	@Override
-//	public VerificationToken getUserVerificationToken(String token) {
-//		
-//		 return tokenRepository.findByToken(token);
-//	}
 
 	@Override
 	public BusinessUser registerNewUserAccount(BusinessUser businessUser, String role) throws EmailExistsException {
 		
-		//check that user is not already registered
-		BusinessUser savedUsers = bussinessUserDaoImpl.loadUserByEmail(businessUser.getEmail());
-		
+		//check that user is not already registered		
 		if (emailExsits(businessUser.getEmail())) {  
 			
             throw new EmailExistsException(
@@ -59,8 +42,7 @@ public class BussinessUserServiceImpl implements BussinessUserService{
 			return businessUser;
 		
 		}
-		
-		
+	
 	}
 
 	private boolean emailExsits(String email) {
@@ -71,12 +53,28 @@ public class BussinessUserServiceImpl implements BussinessUserService{
 	        }
 	        return false;
 
-	}
+	}	
 
 	@Override
 	public void activateUser(BusinessUser existingbusinessUser) {
 		
+		existingbusinessUser.setEnabled(true);
 		bussinessUserDaoImpl.saveUser(existingbusinessUser);
+		
+	}
+
+	@Override
+	public void generateUserToken(BusinessUser businessUser) {
+		
+		String token = UUID.randomUUID().toString();
+		businessUser.setToken(token);
+		
+	}
+
+	@Override
+	public BusinessUser findUserByToken(String token) {
+		
+		return bussinessUserDaoImpl.findByToken(token);
 		
 	}
 	

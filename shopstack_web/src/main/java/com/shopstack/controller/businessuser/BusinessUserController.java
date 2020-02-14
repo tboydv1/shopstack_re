@@ -1,6 +1,6 @@
 package com.shopstack.controller.businessuser;
 
-import java.util.Locale;
+
 import java.util.logging.Logger;
 
 import javax.validation.Valid;
@@ -58,14 +58,17 @@ public class BusinessUserController {
 			return new ModelAndView("register-page", "user", new BusinessUser());
 		}
 		
-
+		//generate token for new user
+		businessUserServiceImpl.generateUserToken(businessUser);
+		
 		registered = createUserAccount(businessUser, resultBinder);
 
 		
 		if(registered == null) {
-			System.out.println("Email already exist");
-			resultBinder.rejectValue("email", "message.regError");
+			logger.info("Email exists");
+			return new ModelAndView("register-page", "user", new BusinessUser());
 		}
+		
 		try {
 			String appUrl = request.getContextPath();
 			eventPublisher.publishEvent(new OnRegistrationCompleteEvent
@@ -85,24 +88,14 @@ public class BusinessUserController {
 	public String confirmRegistration(WebRequest request, Model model, 
 			@RequestParam("token") String token) {
 		
-		Locale locale = request.getLocale();
-		
-//		VerificationToken savedToken = businessUserServiceImpl.getUserVerificationToken(token);
-//		if(savedToken == null) {
-//			model.addAttribute("user","invalid user");
-//			return "user-expired";
-//		}
-//		
-//		BusinessUser existingUser = savedToken.getUser();
-//		Calendar cal = Calendar.getInstance();
-//		
-//		if(savedToken.getExpiryDate().getTime() - cal.getTime().getTime() <= 0) {
-//			model.addAttribute("user", "user is expired");
-//			return "user-expired";
-//		}
-//		
-//		existingUser.setEnabled(1);
-//		businessUserServiceImpl.activateUser(existingUser);
+
+		BusinessUser existingUser = businessUserServiceImpl.findUserByToken(token);
+		if(existingUser.getToken() == null) {
+			model.addAttribute("user","invalid user");
+			return "user-expired";
+		}
+
+		businessUserServiceImpl.activateUser(existingUser);
 		
 		return "login";
 	}

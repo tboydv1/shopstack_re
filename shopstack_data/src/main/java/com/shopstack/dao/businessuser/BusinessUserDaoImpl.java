@@ -106,6 +106,30 @@ public class BusinessUserDaoImpl implements BusinessUserDao{
 		return existingUser;
 	}
 
+	@Override
+	@Transactional
+	public BusinessUser findByToken(String token) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		BusinessUser existingUser = null;
+		
+		@SuppressWarnings("rawtypes")
+		Query query = currentSession.createQuery("from BusinessUser b where b.token =: token");
+			query.setParameter("token", token);
+		try {
+			
+			existingUser = (BusinessUser) query.getResultList().get(0);
+			
+		}catch(RuntimeException runtime) {
+			
+			logger.info("Threw runtime exception" + runtime);
+			
+			existingUser = null;
+		}
+		
+		return existingUser;
+	}
+
 	
 	
 	

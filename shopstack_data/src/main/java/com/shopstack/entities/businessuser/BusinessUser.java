@@ -80,6 +80,9 @@ public class BusinessUser {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
+	@Column(name="ss_token")
+	private String token;
+	
 	@OneToMany(mappedBy="userEmail")
 	private List<Role> userRoles;
 	
@@ -96,6 +99,9 @@ public class BusinessUser {
 	
 	
 	public BusinessUser() {
+		
+		this.enabled = false;
+		this.status = Status.PENDING;
 		
 	}
 	
@@ -241,6 +247,41 @@ public class BusinessUser {
 	public void setUserStatus(Status userStatus) {
 		this.status = userStatus;
 	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("Firstname " + getFirstName())
+				.append("/n")
+				.append("Lastname " + getLastName())
+				.append("/n")
+				.append("Email " + getEmail())
+				.append("/n")
+				.append("Password " + getPassword());
+
+		return builder.toString();
+				
+			 
+	}
+	
+	
 	
 	
 

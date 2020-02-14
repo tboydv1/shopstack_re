@@ -64,7 +64,6 @@ public class Business {
 	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="biz_category_id")
-	@LazyToOne(LazyToOneOption.NO_PROXY)
 	private BusinessCategory bizCategory;
 	
 	@NotNull()

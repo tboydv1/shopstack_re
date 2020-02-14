@@ -1,13 +1,13 @@
 
-INSERT INTO `shopstack`.`ss_user`(`ss_user_id`,`ss_first_name`, `ss_last_name`, `ss_email`, `ss_phone_number`, `ss_password`, `ss_enabled`, `ss_status`)
+INSERT INTO `shopstack`.`ss_user`(`ss_user_id`,`ss_first_name`, `ss_last_name`, `ss_email`, `ss_phone_number`, `ss_password`, `ss_enabled`, `ss_status`, `ss_token`)
 VALUES
-(1,'John', 'Ray', 'ray@mail.com', 070674673684,'test@123', 1, 'ACTIVE'),
-(2,'Tolani', 'Dada', 'tolani@mail.com', 070674673684,'test@123', 1, 'ACTIVE'),
-(3,'Lemon', 'Brown', 'lemon@mail.com', 070674673684,'test@123', 1,'ACTIVE'),
-(4,'Tobi', 'Tosho', 'tosho@mail.com', 070674673684,'test@123', 1,'ACTIVE'),
-(5,'Bisi', 'Tokunbo', 'bisi@mail.com', 070674673684,'test@123', 1,'ACTIVE'),
-(6,'Carl', 'Grey', 'carl@mail.com', 070674673684,'test@123', 1,'ACTIVE'),
-(7,'Kayode', 'Tope', 'kay@mail.com', 070674673684,'test@123', 1, 'ACTIVE');
+(1,'John', 'Ray', 'ray@mail.com', 070674673684,'test@123', 1, 'ACTIVE', 'testtoken1'),
+(2,'Tolani', 'Dada', 'tolani@mail.com', 070674673684,'test@123', 1, 'ACTIVE', 'testtoken2'),
+(3,'Lemon', 'Brown', 'lemon@mail.com', 070674673684,'test@123', 1,'ACTIVE', 'testtoken3'),
+(4,'Tobi', 'Tosho', 'tosho@mail.com', 070674673684,'test@123', 1,'ACTIVE', 'testtoken4'),
+(5,'Bisi', 'Tokunbo', 'bisi@mail.com', 070674673684,'test@123', 1,'ACTIVE', 'testtoken5'),
+(6,'Carl', 'Grey', 'carl@mail.com', 070674673684,'test@123', 1,'ACTIVE' ,'testtoken6'),
+(7,'Kayode', 'Tope', 'kay@mail.com', 070674673684,'test@123', 1, 'ACTIVE', 'testtoken7');
 
 INSERT INTO `shopstack`.`role`(`role_id`,`role`, `user_email`)
 VALUES

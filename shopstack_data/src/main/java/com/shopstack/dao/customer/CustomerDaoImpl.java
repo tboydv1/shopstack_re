@@ -1,9 +1,6 @@
 package com.shopstack.dao.customer;
 
 
-import java.text.DateFormat;
-import java.util.Date;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jboss.logging.Logger;
