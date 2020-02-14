@@ -75,9 +75,8 @@ public class BusinessOutlet {
 	}
 	
 	
-	public BusinessOutlet(int outletId, @NotNull String displayName, @NotNull String location, Business businessId) {
+	public BusinessOutlet(@NotNull String displayName, @NotNull String location, Business businessId) {
 		super();
-		this.outletId = outletId;
 		this.displayName = displayName;
 		this.location = location;
 		this.businessId = businessId;
