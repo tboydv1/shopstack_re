@@ -1,3 +1,10 @@
+use shopstack;
+
+SET FOREIGN_KEY_CHECKS = 0; 
+TRUNCATE table ss_business; 
+truncate table ss_business_outlet;
+SET FOREIGN_KEY_CHECKS = 1;
+
 INSERT INTO `shopstack`.`ss_business`(`biz_id`,`biz_name`,`biz_email`, `biz_category_id`, `biz_service_id`, `biz_creator`)
 
 VALUES

@@ -23,7 +23,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.shopstack.entities.business.BusinessOutlet;
-import com.shopstack.entities.role.Role;
 
 
 /**

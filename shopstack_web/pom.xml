@@ -95,8 +95,21 @@
 			<version>1.4.7</version>
 		</dependency>
 	
-	
-	
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-test</artifactId>
+    <version>5.2.2.RELEASE</version>
+    <scope>test</scope>
+</dependency>
+
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>5.2.2.RELEASE</version>
+	    <scope>test</scope>
+	</dependency>
+
 	    
   </dependencies>
   

@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 
 @Configuration
 @EnableWebSecurity
@@ -21,13 +23,21 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 			
-		auth.jdbcAuthentication().dataSource(securityDataSource)
-								.usersByUsernameQuery("select ss_email, ss_password, ss_enabled "
-							        + "from ss_user "
-							        + "where ss_email = ?")
-								.authoritiesByUsernameQuery("select role, user_email"
-							        + "from role "
-							        + "where user_email = ?");
+		auth.jdbcAuthentication()
+				.dataSource(securityDataSource)
+				.usersByUsernameQuery("select ss_email, ss_password, ss_enabled "
+			        + "from ss_user "
+			        + "where ss_email = ?")
+				.authoritiesByUsernameQuery("select ss_user_email, role_name "
+			        + "from user_roles "
+			        + "where ss_user_email = ?");
+		
+//		UserBuilder users = User.withDefaultPasswordEncoder();
+//		
+//		auth.inMemoryAuthentication()
+//			.withUser(users.username("john").password("test123").roles("EMPLOYEE"))
+//			.withUser(users.username("mary").password("test123").roles("MANAGER"))
+//			.withUser(users.username("susan").password("test123").roles("ADMIN"));
 	}
 
 	@Override
@@ -39,8 +49,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin()
 			.loginPage("/login")
-			.loginProcessingUrl("/authenticate")
-			.defaultSuccessUrl("/shop-owner/dashboard")
+			.loginProcessingUrl("/auth")
+			.defaultSuccessUrl("/user/dashboard")
 			.permitAll()
 		.and()
 			.logout()

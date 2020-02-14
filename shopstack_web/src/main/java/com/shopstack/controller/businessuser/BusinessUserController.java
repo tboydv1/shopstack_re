@@ -90,7 +90,8 @@ public class BusinessUserController {
 		
 
 		BusinessUser existingUser = businessUserServiceImpl.findUserByToken(token);
-		if(existingUser.getToken() == null) {
+		
+		if(existingUser == null) {
 			model.addAttribute("user","invalid user");
 			return "user-expired";
 		}
@@ -112,5 +113,11 @@ public class BusinessUserController {
 	        return null;
 	    }
 	    return registered;
+	}
+	
+	@GetMapping("/dashboard")
+	public String showDashBoard() {
+		
+		return "dashboard";
 	}
 }

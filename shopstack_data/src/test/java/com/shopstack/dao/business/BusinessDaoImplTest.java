@@ -27,7 +27,7 @@ import com.shopstack.entities.businessuser.BusinessUser;
  * @author oluwatobi
  *
  */
-@Sql(scripts= {"classpath:/db/shopstack-create-db.sql", "classpath:/db/business-category-insert.sql", "classpath:/db/insert-users.sql"})
+@Sql(scripts= {"classpath:/db/business-category-insert.sql", "classpath:/db/insert-users.sql"})
 @ContextConfiguration(classes= DataContextConfig.class)	
 @RunWith(SpringRunner.class)
 public class BusinessDaoImplTest {

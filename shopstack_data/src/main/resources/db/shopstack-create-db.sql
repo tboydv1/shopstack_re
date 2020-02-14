@@ -314,16 +314,16 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `shopstack`.`role`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `shopstack`.`role` ;
+DROP TABLE IF EXISTS `shopstack`.`user_roles` ;
 
-CREATE TABLE IF NOT EXISTS `shopstack`.`role` (
+CREATE TABLE IF NOT EXISTS `shopstack`.`user_roles` (
   `role_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `role` VARCHAR(50) NOT NULL,
-  `user_email` VARCHAR(45) NOT NULL,
+  `role_name` VARCHAR(50) NOT NULL,
+  `ss_user_email` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`role_id`),
-  INDEX `fk_role_user_email_idx` (`user_email` ASC),
+  INDEX `fk_role_user_email_idx` (`ss_user_email` ASC),
   CONSTRAINT `fk_role_user_email`
-    FOREIGN KEY (`user_email`)
+    FOREIGN KEY (`ss_user_email`)
     REFERENCES `shopstack`.`ss_user` (`ss_email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
