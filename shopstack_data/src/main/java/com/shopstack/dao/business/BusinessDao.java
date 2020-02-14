@@ -16,7 +16,7 @@ import com.shopstack.entities.businessuser.BusinessUser;
  */
 public interface BusinessDao {
 
-	public void saveBusiness(Business newBusiness);
+	public void save(Business newBusiness);
 	
 	public List<Business> findByOwner(BusinessUser businessUser);
 	
@@ -29,5 +29,8 @@ public interface BusinessDao {
 	public List<BusinessServiceType> findAllServiceTypes();
 	
 	public BusinessOutlet findOutletById(int outletId);
+	
+	public void save(BusinessOutlet newBusinessOutlet);
+
 	
 }

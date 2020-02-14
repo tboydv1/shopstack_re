@@ -35,7 +35,7 @@ public class BusinessDaoImpl implements BusinessDao {
 	
 	@Override
 	@Transactional
-	public void saveBusiness(Business theBusiness) {
+	public void save(Business theBusiness) {
 		
 		Session currentSession = getCurrentSession();
 		
@@ -180,12 +180,33 @@ public class BusinessDaoImpl implements BusinessDao {
 		return currentSession.get(BusinessOutlet.class, outletId);
 		
 	}
-	
-	
-	
-	
-	
 
 
+	@Transactional
+	public void save(BusinessOutlet newBusinessOutlet) {
+		
+			Session currentSession = getCurrentSession();
+		
+		if(newBusinessOutlet != null) 
+			currentSession.save(newBusinessOutlet);
+//		}
+//		else {
+//			save(newBusinessOutlet);
+//		}
+//		
+	}
+	public Session getCurrentSectionBusinessOutlet() {
+		Session currentSession = null;
+		
+		try {
+			currentSession = sessionFactory.getCurrentSession();
+	}
+		catch(Exception exe) {
+			
+			logger.log(Level.SEVERE, "Exception thrown while getting current session");
+		}
+		
+		return currentSession;
+	}
 	
 }
