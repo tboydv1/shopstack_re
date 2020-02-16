@@ -2,7 +2,7 @@ use shopstack;
 
 SET FOREIGN_KEY_CHECKS = 0; 
 TRUNCATE table business_services; 
-truncate table business_category;
+TRUNCATE table business_category;
 SET FOREIGN_KEY_CHECKS = 1;
 
 

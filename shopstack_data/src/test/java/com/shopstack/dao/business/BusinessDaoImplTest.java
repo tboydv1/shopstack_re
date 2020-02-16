@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
-import org.jboss.logging.Logger;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,6 +61,8 @@ public class BusinessDaoImplTest {
 	@Test
 	public void getBusinessServiceTest() {
 		
+		logger.info("Fetching saved business service reference data");
+		
 		List<BusinessServiceType> savedList = businessDaoImpl.findAllServiceTypes(); 
 		assertNotNull(savedList);
 		
@@ -71,33 +72,48 @@ public class BusinessDaoImplTest {
 	@Test
 	public void getBusinessCategories() {
 		
-		List<BusinessCategory> savedList = businessDaoImpl.findAllCategories(); 
+		logger.info("Fetching saved business category reference data");
+
+		List<BusinessCategory> savedList = businessDaoImpl.findAll(); 
 		assertNotNull(savedList);
-//		savedList.forEach(System.out::println);
+
 
 	}
 	
 	@Test
 	public void saveNewBusinessTest() {
 		
+		logger.info("Fetching saved business user");
+		
 		BusinessUser businessUser = businessUserDao.loadUserByEmail("tosho@mail.com");
 		assertNotNull(businessUser);
 		
-		List<BusinessCategory> categoryList = businessDaoImpl.findAllCategories(); 
-		assertNotNull(categoryList);
+		logger.info("Fetching saved business category reference data");
 		
-		List<BusinessServiceType> servicesList = businessDaoImpl.findAllServiceTypes(); 
-		assertNotNull(servicesList);
+		BusinessCategory category  = businessDaoImpl.findBusinessCategoryByName("Patnership");
 		
+		logger.info("Fetching saved business service reference data");
+
+		BusinessServiceType service = businessDaoImpl.findBusinessServiceTypeByName("Education and Training");
+		
+		logger.info("Creating new business object");
+
 		Business newBusiness = new Business("Shopify", "shopify@mybusiness.com", 
-				categoryList.get(2), servicesList.get(1), businessUser);
+				category,service , businessUser);
 		
+		logger.info("saving new business");
+
 		businessDaoImpl.save(newBusiness);
 		
+		logger.info("Fetching saved business ");
+
 		int businessId = newBusiness.getBizId();
 		Business savedBusiness = businessDaoImpl.findById(businessId);
-				
+		
 		assertNotNull(savedBusiness);
+		
+		logger.info("Fetching saved business successful");
+
 		assertNotNull(savedBusiness.getBizCategory());
 		assertNotNull(savedBusiness.getBizService());
 		assertNotNull(savedBusiness.getCreator());

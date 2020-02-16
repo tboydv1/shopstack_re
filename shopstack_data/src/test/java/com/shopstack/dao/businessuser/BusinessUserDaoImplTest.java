@@ -79,8 +79,6 @@ public class BusinessUserDaoImplTest {
 		assertThrows(NullPointerException.class,  ()-> businessUserDaoImpl.saveUser(tempUser));
 		
 	}
-	
-	
 	@Test
 	public void findUserByToken() {
 		
