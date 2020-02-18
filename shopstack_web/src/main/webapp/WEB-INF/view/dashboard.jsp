@@ -23,10 +23,10 @@
 	</p>
 	
 	<hr>
-		<form:form action="${pageContext.request.contextPath}/shop/create" 
+		<form:form action="${pageContext.request.contextPath}/biz/form" 
 	method="GET">
 		
-		<input type="submit" value="Add new shop">
+		<input type="submit" value="Add new business">
 	</form:form> 
 		
 	<hr>

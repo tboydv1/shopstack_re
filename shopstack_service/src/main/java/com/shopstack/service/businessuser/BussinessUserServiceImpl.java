@@ -79,5 +79,11 @@ public class BussinessUserServiceImpl implements BussinessUserService{
 		return bussinessUserDaoImpl.findByToken(token);
 		
 	}
+
+	@Override
+	public BusinessUser findByEmail(String userEmail) {
+			
+		return bussinessUserDaoImpl.loadUserByEmail(userEmail);
+	}
 	
 }

@@ -32,7 +32,7 @@
 		Business Category: 
 		<form:label path="bizCategory"/>
 			
-			<form:select path ="bizCategory">
+			<form:select path ="bizCategory.">
 				<form:option value="Choose one" />
 				<form:options items="${categoriesList}" />
 			</form:select>

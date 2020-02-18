@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.shopstack.controller.event.OnRegistrationCompleteEvent;
 import com.shopstack.entities.businessuser.BusinessUser;
 import com.shopstack.service.businessuser.BussinessUserService;
@@ -120,4 +119,6 @@ public class BusinessUserController {
 		
 		return "dashboard";
 	}
+	
+   
 }
