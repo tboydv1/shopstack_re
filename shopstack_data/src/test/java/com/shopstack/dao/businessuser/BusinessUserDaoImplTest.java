@@ -17,14 +17,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.shopstack.context.config.DataContextConfig;
 import com.shopstack.entities.businessuser.BusinessUser;
-import com.shopstack.entities.role.Role;
+import com.shopstack.entities.businessuser.Role;
 
 /**
  * @author oluwatobi
  *
  */
 
-@Sql(scripts= {"classpath:/db/shopstack-create-db.sql", "classpath:/db/insert-users.sql"})
+@Sql(scripts= {"classpath:/db/insert-users.sql"})
 @ContextConfiguration(classes= DataContextConfig.class)	
 @RunWith(SpringRunner.class)
 public class BusinessUserDaoImplTest {
@@ -79,8 +79,6 @@ public class BusinessUserDaoImplTest {
 		assertThrows(NullPointerException.class,  ()-> businessUserDaoImpl.saveUser(tempUser));
 		
 	}
-	
-	
 	@Test
 	public void findUserByToken() {
 		

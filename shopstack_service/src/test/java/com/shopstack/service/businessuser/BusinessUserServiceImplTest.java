@@ -40,16 +40,17 @@ public class BusinessUserServiceImplTest {
 	@Test
 	public void saveNewUserTest() throws EmailExistsException {
 		
-		BusinessUser tempUser = new 
-				BusinessUser("Test", "TestLast", "Test@mail.com", "0909796996", "testpass");
+		BusinessUser newUser = new BusinessUser();
 		
 		when(businessUserServiceImplMock.registerNewUserAccount(isA(BusinessUser.class),
-				isA(String.class))).thenReturn(tempUser);
+				isA(String.class))).thenReturn(newUser);
 		
-		businessUserServiceImplMock.registerNewUserAccount(tempUser, "ROLE_USER");
+		businessUserServiceImplMock.registerNewUserAccount(newUser, "ROLE_USER");
 		
-		verify(businessUserServiceImplMock, times(1)).registerNewUserAccount(tempUser, "ROLE_USER");
+		verify(businessUserServiceImplMock, times(1)).registerNewUserAccount(newUser, "ROLE_USER");
 	}
+	
+
 
 	
 

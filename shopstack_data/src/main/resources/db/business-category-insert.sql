@@ -1,5 +1,13 @@
 use shopstack;
 
+SET FOREIGN_KEY_CHECKS = 0; 
+TRUNCATE table business_services; 
+TRUNCATE table business_category;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+
 INSERT INTO `shopstack`.`business_category`(`biz_category_name`)
 VALUES
 ('Patnership'),

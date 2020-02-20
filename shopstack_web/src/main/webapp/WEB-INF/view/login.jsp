@@ -53,22 +53,24 @@
 
 
 
-                <form:form action="${pageContext.request.contextPath}/authenticate" 
+                <form:form action="${pageContext.request.contextPath}/auth" 
 							   method="POST" >
-							   
-					
+							 
+                    <div class="form-group">
+                        <!--  <label for="username">Email</label> -->
+                        <input type="text" name="username" class="form-control" path="username" placeholder="Email">
+                    </div>
                     
                     <div class="form-group">
-                        <label for="emailAddress">Username</label>
-                        <input type="text" class="form-control" path="username" placeholder="username">
-                    </div>
-                    <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" path="password" placeholder="Password">
+                        <input type="password" name="password" class="form-control" path="password" placeholder="Password">
                     </div>
+                    
                     <button type="submit" class="btn btn-primary">Sign In</button>
-                </form:form><br />
-                <p>Dont have an account? <a href="${pageContext.request.contextPath}/shop-owner/register">Sign Up</a></p>
+                </form:form>
+                
+                <br />
+                <p>Dont have an account? <a href="${pageContext.request.contextPath}/user/register">Sign Up</a></p>
                 </div>
                   <!--  <button type="submit" class="btn btn-primary">Sign In</button>
                    

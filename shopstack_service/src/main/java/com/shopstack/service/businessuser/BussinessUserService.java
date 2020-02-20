@@ -15,4 +15,6 @@ public interface BussinessUserService {
 	public void activateUser(BusinessUser existingbusinessUser);
 	
 	public BusinessUser findUserByToken(String token);
+
+	public BusinessUser findByEmail(String userEmail);
 }

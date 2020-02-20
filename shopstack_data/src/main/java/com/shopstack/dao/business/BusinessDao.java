@@ -24,9 +24,13 @@ public interface BusinessDao {
 		
 	public Business findById(int businessId);
 	
-	public List<BusinessCategory> findAllCategories();
+	public List<BusinessCategory> findAll();
 	
 	public List<BusinessServiceType> findAllServiceTypes();
+	
+	public BusinessCategory findBusinessCategoryByName(String ObjectId);
+	
+	public BusinessServiceType findBusinessServiceTypeByName(String ObjectId);
 	
 	public BusinessOutlet findOutletById(int outletId);
 	

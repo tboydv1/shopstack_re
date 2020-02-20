@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.shopstack.controller.event.OnRegistrationCompleteEvent;
 import com.shopstack.entities.businessuser.BusinessUser;
 import com.shopstack.service.businessuser.BussinessUserService;
@@ -90,7 +89,8 @@ public class BusinessUserController {
 		
 
 		BusinessUser existingUser = businessUserServiceImpl.findUserByToken(token);
-		if(existingUser.getToken() == null) {
+		
+		if(existingUser == null) {
 			model.addAttribute("user","invalid user");
 			return "user-expired";
 		}
@@ -113,4 +113,12 @@ public class BusinessUserController {
 	    }
 	    return registered;
 	}
+	
+	@GetMapping("/dashboard")
+	public String showDashBoard() {
+		
+		return "dashboard";
+	}
+	
+   
 }

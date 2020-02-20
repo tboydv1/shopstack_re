@@ -25,6 +25,7 @@ import com.shopstack.entities.businessuser.BusinessUser;
  *
  */
 @Repository
+@Transactional
 public class BusinessDaoImpl implements BusinessDao {
 	
 	private Logger logger = Logger.getLogger(getClass().getName());
@@ -34,7 +35,6 @@ public class BusinessDaoImpl implements BusinessDao {
 
 	
 	@Override
-	@Transactional
 	public void save(Business theBusiness) {
 		
 		Session currentSession = getCurrentSession();
@@ -60,7 +60,6 @@ public class BusinessDaoImpl implements BusinessDao {
 
 
 	@Override
-	@Transactional
 	public List<Business> findByOwner(BusinessUser businessUser) {
 
 		return null;
@@ -68,7 +67,6 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 	
 	@Override
-	@Transactional
 	public Business findByEmail(String bizEmail) {
 		
 		Business result = null;
@@ -100,7 +98,6 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 
 	@Override
-	@Transactional
 	public Business findById(int businessId) {
 		
 		Session currentSession = getCurrentSession();
@@ -124,8 +121,7 @@ public class BusinessDaoImpl implements BusinessDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
-	public List<BusinessCategory> findAllCategories() {
+	public List<BusinessCategory> findAll() {
 		
 		List<BusinessCategory> result = null;
 		
@@ -149,7 +145,6 @@ public class BusinessDaoImpl implements BusinessDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<BusinessServiceType> findAllServiceTypes() {
 		
 		List<BusinessServiceType> result = null;
@@ -172,7 +167,6 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 
 	@Override
-	@Transactional
 	public BusinessOutlet findOutletById(int outletId) {
 			
 		Session currentSession = getCurrentSession();
@@ -182,31 +176,76 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 
 
-	@Transactional
+	@Override
 	public void save(BusinessOutlet newBusinessOutlet) {
 		
 			Session currentSession = getCurrentSession();
 		
 		if(newBusinessOutlet != null) 
 			currentSession.save(newBusinessOutlet);
-//		}
-//		else {
-//			save(newBusinessOutlet); 
-//		}
-//		
+
 	}
-	public Session getCurrentSectionBusinessOutlet() {
-		Session currentSession = null;
+
+	@Override
+	public BusinessCategory findBusinessCategoryByName(String ObjectId) {
+		
+		BusinessCategory result = null;
+		
+		Session currentSession = getCurrentSession();
 		
 		try {
-			currentSession = sessionFactory.getCurrentSession();
-	}
-		catch(Exception exe) {
 			
-			logger.log(Level.SEVERE, "Exception thrown while getting current session");
+			
+			@SuppressWarnings("rawtypes")
+			Query query = currentSession.createQuery("from BusinessCategory b where b.bizCategoryName = : name");
+			
+			query.setParameter("name", ObjectId);
+			
+			result = (BusinessCategory) query.getResultList().get(0);			
+			
+		}catch(RuntimeException exe) {
+			
+			logger.info("Exception thrown while retrieve business category from the database");
+			
+			exe.printStackTrace();
+			result = null;
+			
 		}
+	
 		
-		return currentSession;
+		return result;
 	}
+
+	@Override
+	public BusinessServiceType findBusinessServiceTypeByName(String ObjectId) {
+		
+		BusinessServiceType result = null;
+		
+		Session currentSession = getCurrentSession();
+		
+		try {
+			
+			
+			@SuppressWarnings("rawtypes")
+			Query query = currentSession.createQuery("from BusinessServiceType b where b.bizServiceName = : name");
+			
+			query.setParameter("name", ObjectId);
+			
+			result = (BusinessServiceType) query.getResultList().get(0);			
+			
+		}catch(RuntimeException exe) {
+			
+			logger.info("Exception thrown while retrieve business category from the database");
+			
+			exe.printStackTrace();
+			result = null;
+			
+		}
+	
+		
+		return result;
+	}
+
+	
 	
 }

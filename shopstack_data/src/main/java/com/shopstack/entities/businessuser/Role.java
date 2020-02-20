@@ -1,4 +1,4 @@
-package com.shopstack.entities.role;
+package com.shopstack.entities.businessuser;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,15 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.shopstack.entities.businessuser.BusinessUser;
-
 
 /**
  * @author oluwatobi
  *
  */
 @Entity
-@Table(name="role")
+@Table(name="user_roles")
 public class Role {
 	
 	@Id
@@ -25,11 +23,11 @@ public class Role {
 	@Column(name="role_id")
 	private int roleId;
 	
-	@Column(name="role")
+	@Column(name="role_name")
 	private String role;
 	
 	@ManyToOne
-	@JoinColumn(name="user_email")
+	@JoinColumn(name="ss_user_email")
 	private BusinessUser userEmail;
 	
 	public Role() {

@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.shopstack.dao.businessuser.BusinessUserDao;
 import com.shopstack.entities.businessuser.BusinessUser;
-import com.shopstack.entities.role.Role;
+import com.shopstack.entities.businessuser.Role;
+import com.shopstack.entities.businessuser.Status;
 
 /**
  * @author oluwatobi
@@ -59,6 +60,7 @@ public class BussinessUserServiceImpl implements BussinessUserService{
 	public void activateUser(BusinessUser existingbusinessUser) {
 		
 		existingbusinessUser.setEnabled(true);
+		existingbusinessUser.setStatus(Status.ACTIVE);
 		bussinessUserDaoImpl.saveUser(existingbusinessUser);
 		
 	}
@@ -76,6 +78,12 @@ public class BussinessUserServiceImpl implements BussinessUserService{
 		
 		return bussinessUserDaoImpl.findByToken(token);
 		
+	}
+
+	@Override
+	public BusinessUser findByEmail(String userEmail) {
+			
+		return bussinessUserDaoImpl.loadUserByEmail(userEmail);
 	}
 	
 }
