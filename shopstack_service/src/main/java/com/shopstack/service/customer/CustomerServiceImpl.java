@@ -2,6 +2,7 @@ package com.shopstack.service.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.shopstack.dao.customer.CustomerDao;
 import com.shopstack.entities.customer.Customer;

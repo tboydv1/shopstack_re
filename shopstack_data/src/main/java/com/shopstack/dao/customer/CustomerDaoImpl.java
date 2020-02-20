@@ -29,7 +29,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	private Logger logger = Logger.getLogger(CustomerDao.class);
 	
 
-	
 	@Transactional
 	@Override
 	public void addCustomer(Customer customerId) {

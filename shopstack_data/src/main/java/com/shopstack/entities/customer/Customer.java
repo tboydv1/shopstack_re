@@ -33,17 +33,19 @@ public class Customer {
 	private String title;
 	
 	@Column(name="firstname")
-	private String firtname;
+	private String firstName;
 	
 	@Column(name="lastname")
-	private String lastname;
+	private String lastName;
 	
 	@NotNull
+	@Email
 	@Column(name="email")
 	private String email;
 	 
+	
 	@Column(name="phone_number")
-	private String contactNumber;
+	private String phoneNumber;
 	
 	@ManyToOne
 	@JoinColumn(name="ss_business_outlet_ss_business_outlet_id")
@@ -54,96 +56,77 @@ public class Customer {
 		
 	}
 	
-	
-	
 	public Customer(@NotNull String email) {
-		super();
 		this.email = email;
 	}
 
 	public Customer(String info, BusinessOutlet existingBusiness) {
-		super();
 		this.email = info;
 		this.businessOutlet = existingBusiness;
 	}
-
-
 
 	public int getCustomerId() {
 		return customerId;
 	}
 
-
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
-
 
 	public String getTitle() {
 		return title;
 	}
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-
-	public String getFirtname() {
-		return firtname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-
-	public void setFirtname(String firtname) {
-		this.firtname = firtname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-	
-
-
-	public String getContactNumber() {
-		return contactNumber;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-
 
 	public BusinessOutlet getBusinessOutlet() {
 		return businessOutlet;
 	}
 
-
 	public void setBusinessOutlet(BusinessOutlet businessOutlet) {
 		this.businessOutlet = businessOutlet;
 	}
 
-
-
-	
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", title=" + title + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", businessOutlet=" 
+				+ "]";
+	}
 	
 	
 
