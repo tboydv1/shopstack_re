@@ -1,5 +1,7 @@
 package com.shopstack.controller.customer;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.jboss.logging.Logger;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.shopstack.entities.business.BusinessOutlet;
 import com.shopstack.entities.customer.Customer;
 import com.shopstack.service.businessoutlet.BusinessOutletServiceImpl;
+import com.shopstack.service.customer.CustomerService;
 import com.shopstack.service.customer.CustomerServiceImpl;
 
 @Controller
@@ -28,9 +31,23 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerServiceImpl customerServiceImpl; 
+	@Autowired
+	private CustomerService customerService; 
 	
 	@Autowired
 	private BusinessOutletServiceImpl businessOutletService;
+	
+	@GetMapping("/list")
+	public String listCustomers(Model theModel) {
+		
+		//get the customers from the dao
+		List<Customer> theCustomers = customerService.getCustomers();
+		
+		//add the customers to the model
+		theModel.addAttribute("customers",theCustomers);
+		
+		return "list-customers";
+	}
 	
 	
 
@@ -43,7 +60,7 @@ public class CustomerController {
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 	
-	@GetMapping("/form")
+	@GetMapping("/showCustomeRegisterForm")
 	public String showCustomeRegisterForm(Model myModel) {
 		
 	   myModel.addAttribute("customer", new Customer());

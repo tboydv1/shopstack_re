@@ -53,4 +53,17 @@ public class CustomerControllerTest {
 		verify(customerserviceImpl, times(1)).addCustomer(myCustomer);
 	
 	}
+	@Test
+	public void listCustomers() throws Exception {
+
+			
+		Customer myCustomer = new Customer("adeola@gmail.com");
+		
+		doNothing().when(customerserviceImpl).addCustomer(isA(Customer.class));
+		
+		customerserviceImpl.addCustomer(myCustomer);
+		
+		verify(customerserviceImpl, times(1)).addCustomer(myCustomer);
+	
+	}
 }
