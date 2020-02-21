@@ -32,7 +32,7 @@
 					</tr>
 					<tr>
 						<td><label>email: </label></td>
-						<td><form:input path="email" /></td>					
+						<td><form:input path="email" /><form:errors path="email" cssClass="error" /></td>					
 					</tr>
 					<tr>
 						<td><label></label></td>
