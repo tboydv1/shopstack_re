@@ -60,7 +60,7 @@ public class CustomerController {
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 	
-	@GetMapping("/showCustomeRegisterForm")
+	@GetMapping("/form")
 	public String showCustomeRegisterForm(Model myModel) {
 		
 	   myModel.addAttribute("customer", new Customer());
