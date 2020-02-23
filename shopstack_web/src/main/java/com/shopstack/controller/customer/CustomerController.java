@@ -30,8 +30,6 @@ public class CustomerController {
 	private Logger logger = Logger.getLogger(CustomerController.class.getName());
 	
 	@Autowired
-	private CustomerServiceImpl customerServiceImpl; 
-	@Autowired
 	private CustomerService customerService; 
 	
 	@Autowired
@@ -89,7 +87,7 @@ public class CustomerController {
 			if(existingOutlet != null) {
 				theCustomer.setBusinessOutlet(existingOutlet);
 			}
-			customerServiceImpl.addCustomer(theCustomer);
+			customerService.addCustomer(theCustomer);
 
 			return "success-form";
 		}
