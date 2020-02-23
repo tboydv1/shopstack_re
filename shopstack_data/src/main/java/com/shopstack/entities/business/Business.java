@@ -59,12 +59,12 @@ public class Business {
 	private Date dateAdded;
 	
 	@NotNull
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="biz_category_id")
 	private BusinessCategory bizCategory;
 	
 	@NotNull()
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="biz_service_id")
 	private BusinessServiceType bizService;
 	

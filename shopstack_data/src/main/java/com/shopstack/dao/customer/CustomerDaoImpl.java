@@ -1,8 +1,11 @@
 package com.shopstack.dao.customer;
 
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,7 +29,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	private Logger logger = Logger.getLogger(CustomerDao.class);
 	
 
-	
 	@Transactional
 	@Override
 	public void addCustomer(Customer customerId) {
@@ -46,6 +48,25 @@ public class CustomerDaoImpl implements CustomerDao {
 	public Customer findById(int customerId) {
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().get(Customer.class, customerId);
+	}
+
+
+	@Override
+	@Transactional
+	public List<Customer> getCustomers() {
+		//get currentSession
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		//create a query
+		Query<Customer> theQuery = currentSession.createQuery("from Customer",
+																Customer.class);
+		
+		//get a result list from the query execution
+		List<Customer> customers = theQuery.getResultList();
+		
+		//return result
+		
+		return customers;
 	}
 	
 
