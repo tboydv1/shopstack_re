@@ -1,4 +1,4 @@
-DROP USER 'shopstack_admin'@'localhost'
+DROP USER if exists 'shopstack_admin'@'localhost';
 
 CREATE USER 'shopstack_admin'@'localhost' IDENTIFIED BY 'shopStack1.0';
 

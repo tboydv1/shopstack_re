@@ -15,9 +15,6 @@ import com.shopstack.entities.customer.Customer;
  * @author adefunmi
  *
  */
-
-
-import com.shopstack.entities.customer.Customer;
 	
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
