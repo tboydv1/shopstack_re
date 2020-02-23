@@ -19,9 +19,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.annotations.LazyToOneOption;
-
 import com.shopstack.entities.businessuser.BusinessUser;
 
 
@@ -62,12 +59,12 @@ public class Business {
 	private Date dateAdded;
 	
 	@NotNull
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="biz_category_id")
 	private BusinessCategory bizCategory;
 	
 	@NotNull()
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="biz_service_id")
 	private BusinessServiceType bizService;
 	

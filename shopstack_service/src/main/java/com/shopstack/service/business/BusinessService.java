@@ -14,5 +14,9 @@ public interface BusinessService {
 	
 	public List<BusinessServiceType> findAllServices();
 	
+	public BusinessServiceType findBusinessServiceType(String nameString);
+	
+	public BusinessCategory findBusinessCategory(String categoryName);
+	
 	
 }

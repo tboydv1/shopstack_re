@@ -7,7 +7,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.*;
 
 
-import org.jboss.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,12 +20,12 @@ import com.shopstack.service.customer.CustomerService;
 @RunWith(SpringRunner.class)
 public class CustomerControllerTest {
 	
-	private Logger logger = Logger.getLogger(getClass().getName());
+//	private Logger logger = Logger.getLogger(getClass().getName());
 
 	
 	@Mock
 	private CustomerService customerserviceImpl;
- 
+	
 	
 	
 	@Before

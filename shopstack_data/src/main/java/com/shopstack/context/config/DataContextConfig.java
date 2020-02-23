@@ -2,8 +2,6 @@ package com.shopstack.context.config;
 
 import java.beans.PropertyVetoException;
 import java.util.Properties;
-import java.util.logging.Logger;
-
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
@@ -15,8 +13,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -38,8 +34,8 @@ public class DataContextConfig {
 	@Autowired
 	private Environment env;
 	
-	private Logger logger = Logger.getLogger(getClass().getName());
-	
+//	private Logger logger = Logger.getLogger(getClass().getName());
+//	
 	// define a bean for ViewResolver
 
 	@Bean

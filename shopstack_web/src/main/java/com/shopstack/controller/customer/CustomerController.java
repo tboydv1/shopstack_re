@@ -14,9 +14,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import com.shopstack.entities.business.BusinessOutlet;
 import com.shopstack.entities.customer.Customer;
 import com.shopstack.service.businessoutlet.BusinessOutletServiceImpl;
