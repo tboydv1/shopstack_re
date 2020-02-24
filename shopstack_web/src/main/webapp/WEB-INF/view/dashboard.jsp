@@ -28,6 +28,7 @@
 		
 		<input type="submit" value="Add new business">
 	</form:form> 
+		<button><a href="${pageContext.request.contextPath}/customer/list">Customer Relationship Management</a></button>
 		
 	<hr>
 	
