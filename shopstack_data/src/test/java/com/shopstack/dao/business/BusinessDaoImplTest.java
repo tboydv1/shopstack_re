@@ -29,7 +29,7 @@ import com.shopstack.entities.businessuser.BusinessUser;
  *
  */
 
-@Sql(scripts= {"classpath:/db/business-category-insert.sql", "classpath:/db/insert-users.sql"})
+@Sql(scripts= {"classpath:/db/insert-into-business-and-user-data.sql"})
 @ContextConfiguration(classes= DataContextConfig.class)	
 @RunWith(SpringRunner.class)
 public class BusinessDaoImplTest {
@@ -122,6 +122,7 @@ public class BusinessDaoImplTest {
 	
 	@Test
 	public void saveNewBusinessOutletTest() {
+		
 		Business newBusiness = businessDaoImpl.findById(1);
 		BusinessOutlet newBusinessOutlet = new BusinessOutlet("adebola ventures NIG.", "312,herbert macaulay road", newBusiness);
 		

@@ -18,7 +18,7 @@ public interface BusinessDao {
 
 	public void save(Business newBusiness);
 	
-	public List<Business> findByOwner(BusinessUser businessUser);
+	public List<Business> findBusinessById(int businessUserId);
 	
 	public Business findByEmail(String bizEmail);
 		

@@ -25,6 +25,11 @@ import com.shopstack.service.business.BusinessService;
 import com.shopstack.service.businessuser.BussinessUserService;
 
 
+/**
+ * @author tobi
+ *
+ */
+
 @Controller 
 @RequestMapping("/biz")
 public class BusinessController {
@@ -40,6 +45,15 @@ public class BusinessController {
 	private List<BusinessCategory> categories;
 	
 	private List<BusinessServiceType> serviceTypes;
+	
+	@GetMapping("/list")
+	public String showBusinessList() {
+		
+//		List<Business> savedBusinesses 
+		
+		
+		return null;
+	}
 	
 	
 	@ModelAttribute("categoriesList")
@@ -87,14 +101,9 @@ public class BusinessController {
 		
 	}
 	
-//	@PostMapping("/process")
-//	public ModelAndView renderBizInfo(@ModelAttribute("business") Business business) {
-//		
-//		return null;
-//	}
+
 	
  	@RequestMapping(value = "/process", method = RequestMethod.GET)
-//    @ResponseBody
     public String currentUserNameSimple(HttpServletRequest request, @ModelAttribute("business") 
     		Business newBusiness, BindingResult resultBinder) {
  		
@@ -117,7 +126,7 @@ public class BusinessController {
         logger.info("find business category type id for " + newBusiness.getBizCategory().getBizCategoryName());
         Integer categoryId = findBusinessCategoryId(newBusiness.getBizCategory().getBizCategoryName());
        
-        logger.info("Category id ---> " + categoryId);
+        logger.info("Category id --> " + categoryId);
         
         if(categoryId != null)
         	newBusiness.getBizCategory().setBizCategoryid(categoryId);

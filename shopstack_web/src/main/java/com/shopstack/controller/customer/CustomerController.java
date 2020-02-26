@@ -20,7 +20,6 @@ import com.shopstack.entities.business.BusinessOutlet;
 import com.shopstack.entities.customer.Customer;
 import com.shopstack.service.businessoutlet.BusinessOutletServiceImpl;
 import com.shopstack.service.customer.CustomerService;
-import com.shopstack.service.customer.CustomerServiceImpl;
 
 @Controller
 @RequestMapping("/customer")

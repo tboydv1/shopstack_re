@@ -59,12 +59,7 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 
 
-	@Override
-	public List<Business> findByOwner(BusinessUser businessUser) {
-
-		return null;
-		
-	}
+	
 	
 	@Override
 	public Business findByEmail(String bizEmail) {
@@ -244,6 +239,22 @@ public class BusinessDaoImpl implements BusinessDao {
 	
 		
 		return result;
+	}
+
+	@Override
+	public List<Business> findBusinessById(int businessUserId) {
+		
+		List<Business> resultBusinesses = null;
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		try {
+//			currentSession.
+			Query<Business> businessQuery = currentSession.createQuery("from Business b where b.creator =: userId", Business.class);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 
 	
