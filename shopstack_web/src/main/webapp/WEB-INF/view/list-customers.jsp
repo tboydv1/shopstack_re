@@ -43,8 +43,13 @@
 					</tr>
 									
 				</c:forEach>
+				
 		</table>
+		
 	</div>
+				<br><br>
+	
+				<button><a href="${pageContext.request.contextPath}/user/dashboard">Back to dashboard page</a></button>
 </div>
 
 </body>
