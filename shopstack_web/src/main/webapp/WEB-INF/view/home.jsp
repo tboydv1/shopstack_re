@@ -25,10 +25,7 @@
 		
 		<input type="submit" value="Sign in">
 	</form:form>
-	
 	<hr>
-	
-
 	
 </body>
 

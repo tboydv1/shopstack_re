@@ -26,8 +26,11 @@
 	</form:form>
 	
 	<hr>
-	
-	
+	<!-- product form but should lead to product view  -->
+		<form:form action="${pageContext.request.contextPath}/product/form" 
+			method="GET">
+		<input type="submit" value="Product">
+	</form:form>
 	
 	<hr>
 		<form:form action="${pageContext.request.contextPath}/logout" 

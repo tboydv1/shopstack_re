@@ -20,4 +20,6 @@ public interface ProductDao {
 	public List<Category> category();
 	
 	public Product findById(int productId);
+	
+
 }
