@@ -2,7 +2,7 @@ package com.shopstack.dao.product;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
