@@ -37,7 +37,7 @@ public class ProductController {
 	 @ModelAttribute("categoriesList")
 		public List<String> getCategories(){
 			
-			 categoriesList = productService.category();
+			 categoriesList = productService.categoryList();
 			
 			List<String> categoryName = new ArrayList<>();
 			

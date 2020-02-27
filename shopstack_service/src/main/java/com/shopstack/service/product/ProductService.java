@@ -12,9 +12,9 @@ public interface ProductService {
 
 	public void addProduct(Product newProduct);
 	
-	public List<Product> product();
+	public List<Product> productList();
 	
-public void addCategory(Category newCategory);
+    public void addCategory(Category newCategory);
 	
-	public List<Category> category();
+	public List<Category> categoryList();
 }
