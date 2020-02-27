@@ -25,4 +25,3 @@ VALUES
 (5,'ROLE_USER' , 'bisi@mail.com'),
 (6,'ROLE_USER' , 'carl@mail.com'),
 (7,'ROLE_USER' , 'kay@mail.com');
-

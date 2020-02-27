@@ -20,7 +20,7 @@ public class BusinessServiceImpl implements BusinessService{
 	@Override
 	public void saveBusiness(Business newBusiness) {
 		
-		businessDaoImpl.save(newBusiness);		
+			businessDaoImpl.save(newBusiness);		
 	}
 
 	@Override
@@ -33,6 +33,18 @@ public class BusinessServiceImpl implements BusinessService{
 	public List<BusinessServiceType> findAllServices() {
 			
 		return businessDaoImpl.findAllServiceTypes();
+	}
+
+	@Override
+	public BusinessServiceType findBusinessServiceType(String nameString) {
+			
+		return businessDaoImpl.findBusinessServiceTypeByName(nameString);
+	}
+
+	@Override
+	public BusinessCategory findBusinessCategory(String categoryName) {
+		// TODO Auto-generated method stub
+		return businessDaoImpl.findBusinessCategoryByName(categoryName);
 	}
 	
 	

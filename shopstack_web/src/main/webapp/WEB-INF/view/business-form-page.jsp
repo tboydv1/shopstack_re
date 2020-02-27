@@ -15,7 +15,7 @@
 <body>
 
 
-	<form:form action=" ${pageContext.request.contextPath}/biz/process" modelAttribute="business"  method="GET">
+	<form:form action="${pageContext.request.contextPath}/biz/process" modelAttribute="business"  method="POST">
 		
 		
 		Company Name : <form:input path="bizName"/>
@@ -30,9 +30,9 @@
 		<br><br>
 		
 		Business Category: 
-		<form:label path="bizCategory"/>
+		<form:label path="bizCategory.bizCategoryName"/>
 			
-			<form:select path ="bizCategory.">
+			<form:select path ="bizCategory.bizCategoryName">
 				<form:option value="Choose one" />
 				<form:options items="${categoriesList}" />
 			</form:select>
@@ -41,8 +41,8 @@
 		<br><br>
 		
 		Business Service : 
-		<form:label path="bizService"/>
-			<form:select path ="bizService">
+		<form:label path="bizService.bizServiceName"/>
+			<form:select path ="bizService.bizServiceName">
 				<form:option value="Choose one" />
 				<form:options items="${servicesList}" />
 			</form:select>

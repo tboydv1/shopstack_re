@@ -114,11 +114,6 @@ public class BusinessUserController {
 	    return registered;
 	}
 	
-	@GetMapping("/dashboard")
-	public String showDashBoard() {
-		
-		return "dashboard";
-	}
-	
+
    
 }

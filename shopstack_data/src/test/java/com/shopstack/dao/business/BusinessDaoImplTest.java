@@ -1,6 +1,7 @@
 package com.shopstack.dao.business;
 
 import static org.junit.Assert.*;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
@@ -29,7 +30,7 @@ import com.shopstack.entities.businessuser.BusinessUser;
  *
  */
 
-@Sql(scripts= {"classpath:/db/business-category-insert.sql", "classpath:/db/insert-users.sql"})
+@Sql(scripts= {"classpath:/db/insert-into-business-and-user-data.sql"})
 @ContextConfiguration(classes= DataContextConfig.class)	
 @RunWith(SpringRunner.class)
 public class BusinessDaoImplTest {
@@ -80,6 +81,19 @@ public class BusinessDaoImplTest {
 
 	}
 	
+//	@Test
+//	public void getBusinesses_wherebusinessuserId() {
+//		
+//		BusinessUser savedUser = businessUserDao.loadUserById(7);
+//		
+//		assertThat(savedUser).isNotNull();
+//		
+//		List<Business> resultBusinesses = businessDaoImpl.findBusinessByOwnerId(savedUser);
+//		assertThat(resultBusinesses).isNotNull();
+//		
+//		resultBusinesses.forEach(System.out::println);
+//	}
+	
 	@Test
 	public void saveNewBusinessTest() {
 		
@@ -122,6 +136,7 @@ public class BusinessDaoImplTest {
 	
 	@Test
 	public void saveNewBusinessOutletTest() {
+		
 		Business newBusiness = businessDaoImpl.findById(1);
 		BusinessOutlet newBusinessOutlet = new BusinessOutlet("adebola ventures NIG.", "312,herbert macaulay road", newBusiness);
 		
