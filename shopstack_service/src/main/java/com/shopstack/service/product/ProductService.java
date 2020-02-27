@@ -1,5 +1,8 @@
 package com.shopstack.service.product;
-
+/**
+ * @author RAY-ABEL
+ *
+ */
 import java.util.List;
 
 import com.shopstack.entities.product.Category;
