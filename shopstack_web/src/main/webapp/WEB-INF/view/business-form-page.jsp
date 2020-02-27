@@ -15,7 +15,7 @@
 <body>
 
 
-	<form:form action="${pageContext.request.contextPath}/biz/process" modelAttribute="business"  method="GET">
+	<form:form action="${pageContext.request.contextPath}/biz/process" modelAttribute="business"  method="POST">
 		
 		
 		Company Name : <form:input path="bizName"/>

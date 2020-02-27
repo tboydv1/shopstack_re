@@ -1,6 +1,7 @@
 package com.shopstack.dao.business;
 
 import static org.junit.Assert.*;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
@@ -79,6 +80,19 @@ public class BusinessDaoImplTest {
 
 
 	}
+	
+//	@Test
+//	public void getBusinesses_wherebusinessuserId() {
+//		
+//		BusinessUser savedUser = businessUserDao.loadUserById(7);
+//		
+//		assertThat(savedUser).isNotNull();
+//		
+//		List<Business> resultBusinesses = businessDaoImpl.findBusinessByOwnerId(savedUser);
+//		assertThat(resultBusinesses).isNotNull();
+//		
+//		resultBusinesses.forEach(System.out::println);
+//	}
 	
 	@Test
 	public void saveNewBusinessTest() {

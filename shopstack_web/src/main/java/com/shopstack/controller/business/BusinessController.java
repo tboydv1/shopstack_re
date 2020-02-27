@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.shopstack.entities.business.Business;
 import com.shopstack.entities.business.BusinessCategory;
+import com.shopstack.entities.business.BusinessOutlet;
 import com.shopstack.entities.business.BusinessServiceType;
 import com.shopstack.entities.businessuser.BusinessUser;
 import com.shopstack.service.business.BusinessService;
@@ -46,18 +47,18 @@ public class BusinessController {
 	
 	private List<BusinessServiceType> serviceTypes;
 	
-	@GetMapping("/list")
+	@GetMapping("/home")
 	public String showBusinessList() {
 		
 //		List<Business> savedBusinesses 
 		
-		
-		return null;
+		return "business-dashboard";
 	}
 	
 	
 	@ModelAttribute("categoriesList")
-	public List<String> getCategories(){
+	public List<String> getCategories()
+	{
 		
 		logger.info("Fetching list of categories from the database");
 		
@@ -75,7 +76,8 @@ public class BusinessController {
 	}
 	
 	@ModelAttribute("servicesList")
-	public List<String> getBusinessServiceTypes(){
+	public List<String> getBusinessServiceTypes()
+	{
 		
 		logger.info("Fetching list of services from the database");
 		
@@ -92,62 +94,100 @@ public class BusinessController {
 	}
 	
 	@GetMapping("/form")
-	public ModelAndView showBusinessForm() {
+	public ModelAndView showBusinessForm() 
+	{
 		
-		
-		
-		return new ModelAndView("business-register-page", 
+		return new ModelAndView("business-form-page", 
 				"business", new Business());
 		
 	}
 	
 
 	
- 	@RequestMapping(value = "/process", method = RequestMethod.GET)
-    public String currentUserNameSimple(HttpServletRequest request, @ModelAttribute("business") 
-    		Business newBusiness, BindingResult resultBinder) {
- 		
- 		logger.info("New business entry -->>" + newBusiness);
- 		
- 		//get currently logged in user
-        Principal principal = request.getUserPrincipal();
-        String userEmail = principal.getName();
-        
-        logger.info("Currently loggged in user name is : "+ userEmail);
-       //Fetch user from the database
-        BusinessUser existingUser = 
-        		businessUserServiceImpl.findByEmail(userEmail);
-        
-        logger.info("Currently logged on user details is: "+ existingUser);
-        
-        //set currently logged in user as creator
-        newBusiness.setCreator(existingUser);
-        
-        logger.info("find business category type id for " + newBusiness.getBizCategory().getBizCategoryName());
-        Integer categoryId = findBusinessCategoryId(newBusiness.getBizCategory().getBizCategoryName());
-       
-        logger.info("Category id --> " + categoryId);
-        
-        if(categoryId != null)
-        	newBusiness.getBizCategory().setBizCategoryid(categoryId);
-        
-        logger.info("find business service id for " + newBusiness.getBizService().getBizServiceName());
-        Integer serviceId = findByServiceTypeId(newBusiness.getBizService().getBizServiceName());
-        
-        logger.info("Service id --> " + serviceId);
-        if(serviceId != null)	
-        	newBusiness.getBizService().setBizServiceId(serviceId);
-        
-        //save business
-        logger.info("Saving new Business");
-        businessServiceImpl.saveBusiness(newBusiness);	
-        
-        return "redirect:/user/dashboard";
+	@RequestMapping(value = "/process", method = RequestMethod.POST)
+	public String saveNewBusiness(HttpServletRequest request, @ModelAttribute("business") 
+			Business newBusiness, BindingResult resultBinder) 
+	{
+		
+		logger.info("New business entry -->> " + newBusiness);
+	
+		if(resultBinder.hasErrors()) {
+			
+			return "redirect:/biz/form";
+		}
+		
+		Principal principal = null;
+		String userEmail = null;
+		
+		//get currently logged in user
+		if(request.getUserPrincipal() != null) {
+			
+		    principal = request.getUserPrincipal();
+		    userEmail = principal.getName();
+		
+		
+		    logger.info("Currently loggged in user name is : "+ userEmail);
+		    //Fetch user from the database
+		   
+		    	
+		        BusinessUser existingUser = 
+		        		businessUserServiceImpl.findByEmail(userEmail);
+		  
+		    logger.info("Currently logged on user details is: "+ existingUser);
+		
+		//set currently logged in user as creator
+		newBusiness.setCreator(existingUser);
+		
+		}
+		else {
+			return "redirect:/login";
+		}
+		
+		if(newBusiness.getBizCategory().getBizCategoryName() != null || 
+				newBusiness.getBizService().getBizServiceName() != null) {
+			
+		    logger.info("find business category type id for " + newBusiness.getBizCategory().getBizCategoryName());
+		    
+		    Integer categoryId = findBusinessCategoryId(newBusiness.getBizCategory().getBizCategoryName());
+		   
+		    logger.info("Category id --> " + categoryId);
+		    
+		    if(categoryId != null)
+		    	newBusiness.getBizCategory().setBizCategoryid(categoryId);
+		    
+		    logger.info("find business service id for " + newBusiness.getBizService().getBizServiceName());
+		    Integer serviceId = findByServiceTypeId(newBusiness.getBizService().getBizServiceName());
+		    
+		    logger.info("Service id --> " + serviceId);
+		    if(serviceId != null)	
+		    	newBusiness.getBizService().setBizServiceId(serviceId);
+		}
+		else {
+			return "redirect:/biz/form";
+		}
+		    
+		    //save business
+		    logger.info("Saving new Business");
+		    businessServiceImpl.saveBusiness(newBusiness);	
+		
+		return "redirect:/biz/home";
 	 }
+ 	
+// 	public String listOutlets() {
+// 		
+// 		List<BusinessOutlet> outlets = businessServiceImpl.
+// 	}
+ 	
+ 	@GetMapping("/outlet/home")
+ 	public String showOutletHome() {
+ 		
+ 		return "business-outlet-dashboard";
+ 	}
  	
  	public Integer findByServiceTypeId(String serviceType) {
  		
  		System.out.println(serviceType);
+ 		
  		if(this.serviceTypes == null) {
  			getBusinessServiceTypes();
  			
@@ -161,33 +201,31 @@ public class BusinessController {
  				
  				return serviceObj.getBizServiceId();
  			}
- 			System.out.println("id's" +serviceObj.getBizServiceId());
  		}
  		
  		return null;
  	}
  	
- 	public Integer findBusinessCategoryId(String category) {
+	public Integer findBusinessCategoryId(String category) {
 		
- 		System.out.println(category);
- 		if(this.categories == null) {
- 			getCategories();
- 			
- 			System.out.println("Null categories");
- 		}
- 		
- 		for(BusinessCategory categoryObj:categories) {
- 			
- 			if (categoryObj.getBizCategoryName().equals(category)) {
+		System.out.println(category);
+		if(this.categories == null) {
+			getCategories();
+		}
+		
+		for(BusinessCategory categoryObj:categories) {
+			
+			if (categoryObj.getBizCategoryName().equals(category)) {
 				
- 				System.out.println(categoryObj.getBizCategoryid());
- 				return categoryObj.getBizCategoryid();
+				System.out.println(categoryObj.getBizCategoryid());
+				return categoryObj.getBizCategoryid();
 			}
- 			System.out.println("id's" +categoryObj.getBizCategoryid());
- 		}
- 		
- 		return null;
+			
+		}
+		
+		return null;
 	
 	
- 	}	
+	}	
+ 	
 }

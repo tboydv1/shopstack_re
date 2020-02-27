@@ -48,7 +48,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 		.formLogin()
 			.loginPage("/login")
 			.loginProcessingUrl("/auth")
-			.defaultSuccessUrl("/user/dashboard")
+			.defaultSuccessUrl("/biz/home")
 			.permitAll()
 		.and()
 			.logout()

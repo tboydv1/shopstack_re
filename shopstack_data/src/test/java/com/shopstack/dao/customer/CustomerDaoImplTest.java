@@ -23,7 +23,7 @@ import com.shopstack.entities.customer.Customer;
  * @author adefunmi
  *
  */
-@Sql(scripts= {"classpath:/db/shopstack-create-db.sql","classpath:/db/insert-users.sql","classpath:/db/business-category-insert.sql", "classpath:/db/insert-business.sql"})
+@Sql(scripts= {"classpath:/db/insert-into-business-and-user-data.sql"})
 @ContextConfiguration(classes= DataContextConfig.class)	
 @RunWith(SpringRunner.class)
 public class CustomerDaoImplTest {

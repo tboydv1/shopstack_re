@@ -63,7 +63,7 @@ public class BusinessControllerTest {
 		businessController.getBusinessServiceTypes();
 		
 		int id = businessController.findByServiceTypeId("Accomodation and Food Services");
-		assertEquals(1, id);
+		assertEquals(5, id);
 		
 	}
 
