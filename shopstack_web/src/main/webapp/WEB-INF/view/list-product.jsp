@@ -35,7 +35,7 @@
 			
 					<c:url var="deleteLink" value="/product/delete">
 					</c:url>
-					<c:url var="addProductLink" value="/product/form">
+					<c:url var="addProduct" value="/product/form">
 						<c:param name="productId" value="${tempProduct.id}" />
 					</c:url>
 					<tr>

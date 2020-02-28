@@ -44,9 +44,9 @@
 		
 		
 		<br><br>
-	 	put new button: Add Product
+	 	
 		
-			<input type="button" value="Add to category"
+			Add Product:<br> <input type="button" value="Add to category"
 				   onclick="window.location.href='category-form'; return false;"
 				  
 			/>
