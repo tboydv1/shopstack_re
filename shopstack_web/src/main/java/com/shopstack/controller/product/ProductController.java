@@ -89,7 +89,7 @@ public class ProductController {
 	    
 	    logger.info("saved product successfully");
 		 
-		return "ok sent";
+		return "successfuly saved product";
 		 
 	 }
 	 @RequestMapping("/category-form")
