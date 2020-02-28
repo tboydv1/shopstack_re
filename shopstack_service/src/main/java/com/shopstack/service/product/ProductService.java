@@ -17,4 +17,6 @@ public interface ProductService {
     public void addCategory(Category newCategory);
 	
 	public List<Category> categoryList();
+	
+	public void deleteProduct(int theId);
 }

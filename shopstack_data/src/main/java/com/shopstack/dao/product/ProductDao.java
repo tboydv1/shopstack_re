@@ -21,6 +21,8 @@ public interface ProductDao {
 	
 	public Product findById(int productId);
 	
+	public void deleteProduct(int theId);
+	
 	
 	
 
