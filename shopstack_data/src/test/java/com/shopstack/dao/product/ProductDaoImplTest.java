@@ -25,7 +25,8 @@ import com.shopstack.entities.product.Product;
  * @author RAY-ABEL
  *
  */
-@Sql(scripts= {"classpath:/db/insert-into-category-and-product-script.sql"})
+@Sql(scripts= {"classpath:/db/insert-into-productCategory.sql"})
+@Sql(scripts= {"classpath:/db/insert-into-product-script.sql"})
 @ContextConfiguration(classes= DataContextConfig.class)	
 @RunWith(SpringRunner.class)
 public class ProductDaoImplTest {
@@ -49,7 +50,7 @@ public class ProductDaoImplTest {
 	
 	@Test
 	public void getProduct() {
-		List<Product> product = productDao.product();
+		List<Product> product = productDao.productList();
 		assertNotNull(product);
 		logger.info(getClass()+ " product list");
 	}
@@ -69,7 +70,7 @@ public class ProductDaoImplTest {
 	}
 	@Test
 	public void getCategory() {
-		List<Category> category = productDao.category();
+		List<Category> category = productDao.categoryList();
 		assertNotNull(category);
 		logger.info(getClass()+ " category list");
 	}

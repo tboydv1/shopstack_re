@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shopstack.entities.product.Category;
@@ -37,7 +38,7 @@ public class ProductController {
 	 @ModelAttribute("categoriesList")
 		public List<String> getCategories(){
 			
-			 categoriesList = productService.category();
+			 categoriesList = productService.categoryList();
 			
 			List<String> categoryName = new ArrayList<>();
 			
@@ -59,6 +60,14 @@ public class ProductController {
 		return "product";
 			
 		}
+	 @GetMapping("/list-product")
+	 public String viewProduct(Model theModel) {
+		 List<Product> productList = productService.productList();
+		 theModel.addAttribute("product",productList);
+		 logger.info("productList " +productList);
+		return "list-product";
+		 
+	 }
 	 
 	 @PostMapping("/process")
 	 @ResponseBody
@@ -124,6 +133,11 @@ public class ProductController {
 		 
 		 
 		 
+	 }
+	 @GetMapping("/delete")
+	 public String deleteProduct(@RequestParam("productId")int theId) {
+		 productService.deleteProduct(theId);
+		return "redirect:/product/list-product";
 	 }
 
 }
