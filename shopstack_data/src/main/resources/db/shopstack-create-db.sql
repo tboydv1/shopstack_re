@@ -4,6 +4,13 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema shopstack
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `shopstack` ;
 
 -- -----------------------------------------------------
 -- Schema shopstack
@@ -11,7 +18,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 CREATE SCHEMA IF NOT EXISTS `shopstack` DEFAULT CHARACTER SET latin1 ;
 USE `shopstack` ;
 
------------------------------------------------------
+-- -----------------------------------------------------
 -- Table `shopstack`.`business_category`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `shopstack`.`business_category` ;
@@ -22,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`business_category` (
   PRIMARY KEY (`biz_category_id`),
   UNIQUE INDEX `biz_category_name_UNIQUE` (`biz_category_name` ASC))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -36,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`business_services` (
   PRIMARY KEY (`biz_service_id`),
   UNIQUE INDEX `biz_service_name_UNIQUE` (`biz_service_name` ASC))
 ENGINE = InnoDB
+AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -100,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`ss_business` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -146,6 +156,7 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`ss_business_outlet` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -185,6 +196,7 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`category` (
   PRIMARY KEY (`category_id`),
   UNIQUE INDEX `category_name_UNIQUE` (`category_name` ASC))
 ENGINE = InnoDB
+AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -208,6 +220,7 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`ss_product` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -257,6 +270,7 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`customer` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -312,7 +326,7 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `shopstack`.`role`
+-- Table `shopstack`.`user_roles`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `shopstack`.`user_roles` ;
 
@@ -328,8 +342,8 @@ CREATE TABLE IF NOT EXISTS `shopstack`.`user_roles` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = latin1;
-
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
