@@ -82,7 +82,16 @@
 		</dependency>
 
 
+<!--		<dependency>-->
+<!--			<groupId>org.hibernate</groupId>-->
+<!--			<artifactId>hibernate-jpamodelgen</artifactId>-->
+<!--			<version>5.3.7.Final</version>-->
+<!--			<scope>provided</scope> &lt;!&ndash; this might ensure that you do not package it, but that it is otherwise available; untested now, but I think I used it that way in the past &ndash;&gt;-->
+<!--		</dependency>-->
+
 	</dependencies>
+
+
   
 
   

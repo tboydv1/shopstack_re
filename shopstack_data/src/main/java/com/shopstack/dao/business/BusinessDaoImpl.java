@@ -4,27 +4,22 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Order;
-import javax.persistence.criteria.SetJoin;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 
+import com.shopstack.entities.business.*;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.shopstack.entities.business.Business;
-import com.shopstack.entities.business.BusinessCategory;
-import com.shopstack.entities.business.BusinessOutlet;
-import com.shopstack.entities.business.BusinessServiceType;
-import com.shopstack.entities.business.Business_;
 import com.shopstack.entities.businessuser.BusinessUser;
+
+import static javax.persistence.criteria.JoinType.INNER;
 
 
 /**
@@ -169,7 +164,7 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 
 	@Override
-	public BusinessOutlet findOutletById(int outletId) {
+	public BusinessOutlet 	findOutletById(int outletId) {
 			
 		Session currentSession = getCurrentSession();
 		
@@ -188,6 +183,7 @@ public class BusinessDaoImpl implements BusinessDao {
 
 	}
 
+
 	@Override
 	public BusinessCategory findBusinessCategoryByName(String ObjectId) {
 		
@@ -199,11 +195,11 @@ public class BusinessDaoImpl implements BusinessDao {
 			
 			
 			@SuppressWarnings("rawtypes")
-			Query query = currentSession.createQuery("from BusinessCategory b where b.bizCategoryName = : name");
+			Query<BusinessCategory> query = currentSession.createQuery("from BusinessCategory b where b.bizCategoryName = : name");
 			
 			query.setParameter("name", ObjectId);
 			
-			result = (BusinessCategory) query.getResultList().get(0);			
+			result = query.getResultList().get(0);
 			
 		}catch(RuntimeException exe) {
 			
@@ -229,11 +225,11 @@ public class BusinessDaoImpl implements BusinessDao {
 			
 			
 			@SuppressWarnings("rawtypes")
-			Query query = currentSession.createQuery("from BusinessServiceType b where b.bizServiceName = : name");
+			Query<BusinessServiceType> query = currentSession.createQuery("from BusinessServiceType b where b.bizServiceName = : name");
 			
 			query.setParameter("name", ObjectId);
 			
-			result = (BusinessServiceType) query.getResultList().get(0);			
+			result =  query.getResultList().get(0);
 			
 		}catch(RuntimeException exe) {
 			
@@ -248,43 +244,4 @@ public class BusinessDaoImpl implements BusinessDao {
 		return result;
 	}
 
-	@Override
-	public List<Business> findBusinessByOwnerId(BusinessUser businessUser) {
-		
-		List<Business> resultBusinesses = null;
-		
-		Session currentSession = sessionFactory.getCurrentSession();
-		
-	
-		try {
-			
-
-
-//			CriteriaBuilder cb = currentSession.getCriteriaBuilder();
-//			
-//			CriteriaQuery<Business> cq = cb.createQuery(Business.class);
-			
-//			SetJoin<Business, BusinessUser> itemNode = cq.from(Order.class).join(Business_.businessEntities);
-			
-//			cq.where( cb.equal(itemNode.get(Item_.id), 5 ) ).distinct(true);
-
-
-			
-			logger.info("Creating query to the database");
-			Query<Business> businessQuery = currentSession.createQuery("from Business b where b.creator =: user", Business.class);
-			
-			businessQuery.setParameter("user", businessUser);
-			
-			logger.info("Fetching results");
-			resultBusinesses = businessQuery.getResultList();
-		
-		} catch (Exception e) {
-			 
-			e.printStackTrace();
-		}
-		return resultBusinesses;
-	}
-		
-	
-	
 }

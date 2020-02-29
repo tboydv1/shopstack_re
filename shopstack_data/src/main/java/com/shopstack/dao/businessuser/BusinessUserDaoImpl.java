@@ -3,6 +3,9 @@ package com.shopstack.dao.businessuser;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.shopstack.entities.business.Business;
+import com.shopstack.entities.business.BusinessOutlet;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -96,6 +99,19 @@ public class BusinessUserDaoImpl implements BusinessUserDao{
 		
 		try {
 			existingUser = (BusinessUser) query.getResultList().get(0);
+
+			for(Business business:existingUser.getBusiness()){
+				Hibernate.initialize(business);
+				Hibernate.initialize((business.getBizCategory()));
+				Hibernate.initialize(business.getBizService());
+
+					for(BusinessOutlet outlets: business.getBusinessOutlets()){
+						Hibernate.initialize(outlets);
+					}
+
+
+			}
+
 
 		}catch(RuntimeException runtimeEx) {
 			

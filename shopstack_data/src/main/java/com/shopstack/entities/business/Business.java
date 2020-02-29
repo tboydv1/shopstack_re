@@ -72,7 +72,7 @@ public class Business {
 	private List<BusinessOutlet> businessOutlets;
 	
 	@NotNull
-	@OneToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="biz_creator")
 	private BusinessUser creator;
 	

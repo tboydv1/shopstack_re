@@ -1,5 +1,6 @@
 package com.shopstack.entities.businessuser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import com.shopstack.entities.business.Business;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.shopstack.entities.business.BusinessOutlet;
@@ -31,7 +33,8 @@ import com.shopstack.entities.business.BusinessOutlet;
  */
 @Entity
 @Table(name="ss_user")
-public class BusinessUser {
+public class BusinessUser implements Serializable {
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -95,6 +98,9 @@ public class BusinessUser {
 			inverseJoinColumns=@JoinColumn(name="ss_business_outlet_id")
 	)
 	private List<BusinessOutlet> businessOutlets;
+
+	@OneToMany(mappedBy = "creator")
+	private List<Business> business;
 	
 	
 	public BusinessUser() {
@@ -262,7 +268,15 @@ public class BusinessUser {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
+
+	public List<Business> getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(List<Business> business) {
+		this.business = business;
+	}
+
 	public String toString() {
 		
 		StringBuilder builder = new StringBuilder();

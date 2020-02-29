@@ -23,13 +23,17 @@
 			<hr>
 			
 			<h3>
-				List of outlets coming soon
+				List of outlets
 			</h3>
 				<!-- loop over outlet -->
 				<c:forEach var="outlet" items="${outlets}">
+
+					<c:url var="outletHome" value="/biz/out/home">
+
+					</c:url>
 					
 					<h2>
-					 ${outlet.displayName} 
+					 ${outlet.displayName}
 					 </h2>
 
 									

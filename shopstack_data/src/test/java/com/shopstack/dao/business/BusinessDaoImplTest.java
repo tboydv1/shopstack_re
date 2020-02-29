@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.List;
 
 import java.util.logging.Logger;
@@ -147,10 +149,12 @@ public class BusinessDaoImplTest {
 		logger.info("Business outlet id is "+outletId);
 		
 		BusinessOutlet existBusinessOutlet = businessDaoImpl.findOutletById(outletId);
-		assertNotNull(existBusinessOutlet);
+		assertThat(existBusinessOutlet).isNotNull();
 			
 			
 	}
+
+
 
 
 }

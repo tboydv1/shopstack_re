@@ -7,7 +7,7 @@ TRUNCATE table business_category;
 TRUNCATE table business_services;
 TRUNCATE table ss_business;
 TRUNCATE table ss_business_outlet;
-SET FOREIGN_KEY_CHECKS = 1;
+
 
 
 INSERT INTO `shopstack`.`ss_user`(`ss_user_id`,`ss_first_name`, `ss_last_name`, `ss_email`, `ss_phone_number`, `ss_password`, `ss_enabled`, `ss_status`, `ss_token`)
@@ -66,10 +66,13 @@ VALUES
 INSERT INTO `shopstack`.`ss_business`(`biz_id`,`biz_name`,`biz_email`, `biz_category_id`, `biz_service_id`, `biz_creator`)
 
 VALUES
-(1,'Backery Hub','bakers@mail.com', 4,19, 6),
+(1,'Flight Hub','bakers@mail.com', 4,19, 6),
+(2,'Vacation Hub','bakers@mail.com', 4,19, 6),
 (3,'Dry Cleaners Hub', 'cleaners@mail.com',4, 24, 7),
 (4,'Fashion Design Hub', 'designers@mail.com',4,13, 7),
-(5,'Mini Marketers', 'mini-market@mail.com',4, 20, 7);
+(5,'Mini Marketers', 'mini-market@mail.com',4, 20, 7),
+(7,'Carpenter Hub','bakers@mail.com', 4,19, 1),
+(9,'Bricklay Hub','bakers@mail.com', 4,19, 1);
 
 
 
@@ -77,10 +80,10 @@ INSERT INTO `shopstack`.`ss_business_outlet`(`ss_business_outlet_id`, `ss_outlet
 `location`, `ss_business_biz_id`)
 VALUES
 (7, 'shopify_yaba', '312 semicolon yaba', 1),
-(5, 'shopify_yaba', '312 semicolon yaba', 3),
-(8, 'shopify_yaba', '312 semicolon yaba', 3),
-(9, 'shopify_yaba', '312 semicolon yaba', 4),
-(10, 'shopify_yaba', '312 semicolon yaba', 4);
+(5, 'flight_yaba', '312 semicolon yaba', 6),
+(8, 'vacation_yaba', '312 semicolon yaba', 6),
+(9, 'carpenter_yaba', '312 semicolon yaba', 2),
+(10, 'bricklay_yaba', '312 semicolon yaba', 1);
 
-
+SET FOREIGN_KEY_CHECKS = 1;
 

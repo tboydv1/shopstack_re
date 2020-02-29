@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shopstack.entities.business.Business;
@@ -46,11 +44,24 @@ public class BusinessController {
 	private List<BusinessCategory> categories;
 	
 	private List<BusinessServiceType> serviceTypes;
+
+	private List<Business> savedBusinesses;
+
+	private List<BusinessOutlet> outlets;
 	
 	@GetMapping("/home")
-	public String showBusinessList() {
-		
-//		List<Business> savedBusinesses 
+	public String showBusinessList(HttpServletRequest request, Model model) {
+
+		BusinessUser activeUser = getCurrentUser(request.getUserPrincipal());
+
+		savedBusinesses = new ArrayList<>();
+
+		for(Business userBusiness: activeUser.getBusiness()){
+
+			savedBusinesses.add(userBusiness);
+		}
+
+		model.addAttribute("businessList", savedBusinesses);
 		
 		return "business-dashboard";
 	}
@@ -101,9 +112,7 @@ public class BusinessController {
 				"business", new Business());
 		
 	}
-	
 
-	
 	@RequestMapping(value = "/process", method = RequestMethod.POST)
 	public String saveNewBusiness(HttpServletRequest request, @ModelAttribute("business") 
 			Business newBusiness, BindingResult resultBinder) 
@@ -118,21 +127,12 @@ public class BusinessController {
 		
 		Principal principal = null;
 		String userEmail = null;
-		
+
 		//get currently logged in user
 		if(request.getUserPrincipal() != null) {
-			
-		    principal = request.getUserPrincipal();
-		    userEmail = principal.getName();
-		
-		
-		    logger.info("Currently loggged in user name is : "+ userEmail);
-		    //Fetch user from the database
-		   
-		    	
-		        BusinessUser existingUser = 
-		        		businessUserServiceImpl.findByEmail(userEmail);
-		  
+
+			BusinessUser existingUser = getCurrentUser(request.getUserPrincipal());
+
 		    logger.info("Currently logged on user details is: "+ existingUser);
 		
 		//set currently logged in user as creator
@@ -178,11 +178,42 @@ public class BusinessController {
 // 		List<BusinessOutlet> outlets = businessServiceImpl.
 // 	}
  	
- 	@GetMapping("/outlet/home")
- 	public String showOutletHome() {
- 		
- 		return "business-outlet-dashboard";
+ 	@GetMapping("/outlet/list")
+ 	public String showOutletList(@RequestParam("bizId") int id, Model model) {
+
+		outlets = new ArrayList<>();
+
+		for(Business business: savedBusinesses){
+
+			if(business.getBizId() == id){
+
+				for(BusinessOutlet outlet: business.getBusinessOutlets())
+						outlets.add(outlet);
+			}
+		}
+
+		model.addAttribute("outlets", outlets);
+
+ 		return "list-outlets";
  	}
+
+ 	@GetMapping("/outlet/home")
+	public String showOutletHome(@RequestParam("outletId") int outletId, Model model){
+
+		BusinessOutlet currentOutlet = null;
+
+		for(BusinessOutlet outlet: outlets){
+			if(
+					outlet.getOutletId() == outletId
+			){
+				currentOutlet = outlet;
+			}
+		}
+
+		model.addAttribute("currentOutlet", currentOutlet);
+
+		return "business-outlet-dashboard";
+	}
  	
  	public Integer findByServiceTypeId(String serviceType) {
  		
@@ -226,6 +257,26 @@ public class BusinessController {
 		return null;
 	
 	
-	}	
+	}
+
+	public BusinessUser getCurrentUser(Principal principal){
+
+		BusinessUser currentUser = null;
+
+		if(principal != null){
+
+			logger.info("Currently loggged in user name is : "+ principal.getName());
+
+			//Fetch user from the database
+			currentUser = businessUserServiceImpl.findByEmail(principal.getName());
+
+
+		}
+
+		return currentUser;
+
+
+
+	}
  	
 }

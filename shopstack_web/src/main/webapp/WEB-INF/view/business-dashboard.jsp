@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 
@@ -19,9 +20,26 @@
 	
 	<p>	
 	
-		Comming soon...
-		<br>
+
+		<br><br>
 		List of all the shops
+		<br><br>
+
+
+			<c:forEach var="business" items="${businessList}">
+			<tb>
+				<c:url var="outletsLink" value="/biz/outlet/list">
+					<c:param name="bizId" value="${business.bizId}" />
+				</c:url>
+
+				<tr>
+					<a href="${outletsLink}">${business.bizName}</a>
+
+				</tr>
+			</tb>
+
+			</c:forEach>
+
 	
 	</p>
 	

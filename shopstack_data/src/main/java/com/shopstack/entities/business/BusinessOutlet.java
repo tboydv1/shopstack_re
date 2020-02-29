@@ -129,6 +129,14 @@ public class BusinessOutlet {
 		this.businessId = businessId;
 	}
 
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
 	@Override
 	public String toString() {
 		return "BusinessOutlet [outletId=" + outletId + ", email=" + email + ", location=" + location + ", phone="

@@ -18,8 +18,6 @@ public interface BusinessDao {
 
 	public void save(Business newBusiness);
 	
-	public List<Business> findBusinessByOwnerId(BusinessUser businessUser);
-	
 	public Business findByEmail(String bizEmail);
 		
 	public Business findById(int businessId);
@@ -35,5 +33,4 @@ public interface BusinessDao {
 	public BusinessOutlet findOutletById(int outletId);
 	
 	public void save(BusinessOutlet newBusinessOutlet);
-
 }
