@@ -8,7 +8,7 @@
 <title>ShopStack Customer Registration Form</title>
 
 <style >
-	.error {color: blue}
+	.error {color: red;}
 </style>
 
 </head>
@@ -16,19 +16,20 @@
 	
 	
 	<form:form action="${pageContext.request.contextPath}/customer/process" modelAttribute="customer" method="POST">
+		<form:hidden path="customerId" />
 			<table>
 				<tbody>
 					<tr>
 						<td><label>First Name: </label></td>
-						<td><form:input path="firstName" /></td>					
+						<td><form:input path="firstName" /><form:errors path="firstName" cssClass="error" /></td>					
 					</tr>
 					<tr>
 						<td><label>Last Name: </label></td>
-						<td><form:input path="lastName" /></td>					
+						<td><form:input path="lastName" /><form:errors path="lastName" cssClass="error" /></td>					
 					</tr>
 					<tr>
 						<td><label>Phone number : </label></td>
-						<td><form:input path="phoneNumber" /></td>					
+						<td><form:input path="phoneNumber" /><form:errors path="phoneNumber" cssClass="error" /></td>					
 					</tr>
 					<tr>
 						<td><label>email: </label></td>

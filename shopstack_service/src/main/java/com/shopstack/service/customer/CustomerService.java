@@ -6,8 +6,12 @@ import com.shopstack.entities.customer.Customer;
 
 public interface CustomerService {
 	 
-	public void addCustomer(Customer customerId);
+	public void saveCustomer(Customer customerId);
 
 	public List<Customer> getCustomers();
+
+	public Customer getCustomer(int theId);
+
+	public void deleteCustomer(int theId);
 
 }

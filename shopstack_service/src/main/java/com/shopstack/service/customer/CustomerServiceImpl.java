@@ -15,9 +15,9 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerDao customerDaoImpl;
 	
-	public void addCustomer(Customer customerId) {
+	public void saveCustomer(Customer customerId) {
 		
-		customerDaoImpl.addCustomer(customerId);
+		customerDaoImpl.saveCustomer(customerId);
 		
 	}
 
@@ -25,6 +25,23 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Customer> getCustomers() {
 		// TODO Auto-generated method stub
 		return customerDaoImpl.getCustomers();
+	}
+	
+	public void updateCustomer(Customer theCustomer) {
+		customerDaoImpl.saveCustomer(theCustomer);
+	}
+
+	@Override
+	public Customer getCustomer(int theId) {
+		// TODO Auto-generated method stub
+		return customerDaoImpl.getCustomer(theId);
+	}
+
+	@Override
+	public void deleteCustomer(int theId) {
+		
+		customerDaoImpl.deleteCustomer(theId);
+		
 	}
 
 }
