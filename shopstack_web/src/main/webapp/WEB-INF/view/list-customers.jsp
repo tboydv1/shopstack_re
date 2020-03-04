@@ -31,6 +31,15 @@
 			
 				<!-- loop over customer -->
 				<c:forEach var="tempCustomer" items="${customers}">
+				
+				<!-- construct an "update" link -->
+					<c:url var="updateLink" value="/customer/showFormForUpdate">
+						<c:param name="customerId" value="${tempCustomer.customerId}" />
+					</c:url>
+					<!-- construct an "delete" link -->
+					<c:url var="deleteLink" value="/customer/delete">
+						<c:param name="customerId" value="${tempCustomer.customerId}" />
+					</c:url>
 					
 					<tr>
 						<td> ${tempCustomer.firstName} </td>
@@ -39,6 +48,10 @@
 						<td>
 							<!-- display the update link -->
 							<a href="${updateLink}" >Update</a>
+							|
+							<a href="${deleteLink}" 
+							onclick="if(!(confirm('are you sure you want to delete this customer?')))
+								return false">Delete</a>
 						 </td>
 					</tr>
 									

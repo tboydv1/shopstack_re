@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.shopstack.entities.customer.Customer;
 
 /**
- * @author adefunmi
+ * @author adeola
  *
  */
 	
@@ -31,13 +31,13 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Transactional
 	@Override
-	public void addCustomer(Customer customerId) {
+	public void saveCustomer(Customer customerId) {
 	
 	
 		Session currentSession = sessionFactory.getCurrentSession();
 		logger.info("Saving Customer to database " + customerId.toString());
 		
-		currentSession.save(customerId);
+		currentSession.saveOrUpdate(customerId);
 		 
 		
 		}
@@ -67,6 +67,32 @@ public class CustomerDaoImpl implements CustomerDao {
 		//return result
 		
 		return customers;
+	}
+
+
+	@Override
+	@Transactional
+	public Customer getCustomer(int theId) {
+		//get the current hibernate session
+				Session currentSession = sessionFactory.getCurrentSession();
+				
+				//retrieve from database using the primary key
+				Customer theCustomer = currentSession.get(Customer.class, theId);
+				
+		return theCustomer;
+	}
+
+
+	@Override
+	@Transactional
+	public void deleteCustomer(int theId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Customer customer = currentSession.byId(Customer.class).load(theId);
+		
+		currentSession.delete(customer);
+		
+		
 	}
 	
 

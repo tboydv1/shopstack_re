@@ -44,11 +44,11 @@ public class CustomerServiceImplTest {
 		
 
 			Customer customer = new Customer("Brand@gmail");
-			doNothing().when(customerServiceImpl).addCustomer(isA(Customer.class));
+			doNothing().when(customerServiceImpl).saveCustomer(isA(Customer.class));
 			
-			customerServiceImpl.addCustomer(customer);
+			customerServiceImpl.saveCustomer(customer);
 			
-			verify(customerServiceImpl, times(1)).addCustomer(customer);
+			verify(customerServiceImpl, times(1)).saveCustomer(customer);
 			
 		
 		

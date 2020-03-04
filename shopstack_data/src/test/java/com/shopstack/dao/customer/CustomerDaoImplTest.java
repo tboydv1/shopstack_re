@@ -62,7 +62,7 @@ public class CustomerDaoImplTest {
 				logger.info("Create new customer");
 				Customer newCustomer = new Customer("ajayibenson@gmail.com", existingBusiness);
 				
-				customerDaoImpl.addCustomer(newCustomer);
+				customerDaoImpl.saveCustomer(newCustomer);
 				logger.info("Successfully saved customer to the database");
 				
 				Customer savedCustomer = customerDaoImpl.findById(newCustomer.getCustomerId());
@@ -74,5 +74,16 @@ public class CustomerDaoImplTest {
 				logger.warn("Error saving customer to the database");
 			
 			}
+	}
+	
+	public void updateCustomer() {
+		try {
+			
+			
+		}
+		catch(Exception e) {
+			
+		}
+		
 	}
 }
