@@ -7,6 +7,7 @@ TRUNCATE table business_category;
 TRUNCATE table business_services;
 TRUNCATE table ss_business;
 TRUNCATE table ss_business_outlet;
+SET FOREIGN_KEY_CHECKS = 1;
 
 
 
@@ -80,10 +81,10 @@ INSERT INTO `shopstack`.`ss_business_outlet`(`ss_business_outlet_id`, `ss_outlet
 `location`, `ss_business_biz_id`)
 VALUES
 (7, 'shopify_yaba', '312 semicolon yaba', 1),
-(5, 'flight_yaba', '312 semicolon yaba', 6),
-(8, 'vacation_yaba', '312 semicolon yaba', 6),
-(9, 'carpenter_yaba', '312 semicolon yaba', 2),
-(10, 'bricklay_yaba', '312 semicolon yaba', 1);
+(5, 'flight_yaba', '312 semicolon yaba', 1),
+(8, 'vacation_yaba', '312 semicolon yaba', 2),
+(9, 'carpenter_yaba', '312 semicolon yaba', 7),
+(10, 'bricklay_yaba', '312 semicolon yaba', 9);
 
-SET FOREIGN_KEY_CHECKS = 1;
+
 

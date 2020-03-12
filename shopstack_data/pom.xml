@@ -21,76 +21,22 @@
 
 	<dependencies>
 
-		<!-- data source dependency -->
-
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.5.5</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>5.2.2.RELEASE</version>
-		</dependency>
-
-		<!-- hibernate dependecy -->
-
-		<dependency>
-			<groupId>org.hibernate.orm</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>6.0.0.Alpha4</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.validation/com.springsource.javax.validation -->
-
-		<!-- mysql db connector -->
-
+		<!--        Mysql connector java-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.18</version>
-		</dependency>
-
-		<!-- spring jdbc driver -->
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>5.2.2.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
-		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>6.1.1.Final</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
-		<dependency>
-			<groupId>commons-dbutils</groupId>
-			<artifactId>commons-dbutils</artifactId>
-			<version>1.7</version>
+			<scope>runtime</scope>
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>2.0.1.Final</version>
-		</dependency>
-
-
-<!--		<dependency>-->
-<!--			<groupId>org.hibernate</groupId>-->
-<!--			<artifactId>hibernate-jpamodelgen</artifactId>-->
-<!--			<version>5.3.7.Final</version>-->
-<!--			<scope>provided</scope> &lt;!&ndash; this might ensure that you do not package it, but that it is otherwise available; untested now, but I think I used it that way in the past &ndash;&gt;-->
-<!--		</dependency>-->
 
 	</dependencies>
-
 
   
 
