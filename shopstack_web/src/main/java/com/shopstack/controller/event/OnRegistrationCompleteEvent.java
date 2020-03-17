@@ -2,9 +2,9 @@ package com.shopstack.controller.event;
 
 import java.util.Locale;
 
+import com.shopstack.model.businessuser.BusinessUser;
 import org.springframework.context.ApplicationEvent;
 
-import com.shopstack.entities.businessuser.BusinessUser;
 
 
 /**
@@ -17,13 +17,13 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String appUrl;
 	private Locale locale;
 	private BusinessUser businessUser;
-	
+
 	public OnRegistrationCompleteEvent(BusinessUser businessUser, Locale locale, String appUrl) {
-		
+
 		super(businessUser);
 		this.businessUser = businessUser;
         this.locale = locale;
@@ -53,7 +53,7 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent{
 	public void setUser(BusinessUser businessUser) {
 		this.businessUser = businessUser;
 	}
-	
+
 	
 	
 	

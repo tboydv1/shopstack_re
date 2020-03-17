@@ -10,68 +10,85 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import com.shopstack.ServiceConfig;
+import com.shopstack.model.business.Business;
+import com.shopstack.model.business.BusinessCategory;
+import com.shopstack.model.business.BusinessServiceType;
+import com.shopstack.repository.business.BusinessCategoryRepository;
+import com.shopstack.repository.business.BusinessRepository;
+import com.shopstack.repository.business.BusinessServiceTypeRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import com.shopstack.entities.business.Business;
-import com.shopstack.entities.business.BusinessCategory;
-import com.shopstack.entities.business.BusinessServiceType;
 
+@SpringBootTest(classes = ServiceConfig.class)
 public class BusinessServiceImplTest {
 
 	
 	@Mock
-	private BusinessService busienssServiceImpl;
+	private BusinessRepository businessRepository;
+
+	@Mock
+	private BusinessCategoryRepository businessCategoryRepository;
+
+	@Mock
+	private BusinessServiceTypeRepository businessServiceTypeRepository;
 	
 	
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
-		
-		busienssServiceImpl = mock(BusinessService.class);		
+
+		businessRepository = mock(BusinessRepository.class);
+
+		businessCategoryRepository = mock(BusinessCategoryRepository.class);
+
+		businessServiceTypeRepository = mock(BusinessServiceTypeRepository.class);
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
-		
-		
+
+
 	}
 
 	@Test
 	public void saveNewBusinessTest() {
-		
+
 		Business newBusiness = new Business();
-		
-		doNothing().when(busienssServiceImpl).saveBusiness(isA(Business.class));
-		busienssServiceImpl.saveBusiness(newBusiness);
-		
-		verify(busienssServiceImpl, times(1)).saveBusiness(newBusiness);
+
+		when(businessRepository.save(isA(Business.class))).thenReturn(newBusiness);
+		businessRepository.save(newBusiness);
+
+		verify(businessRepository, times(1)).save(newBusiness);
 	}
-	
-	
+
+
 	@Test
 	public void getBusinessCategories() {
-		
+
 		List<BusinessCategory> category = new ArrayList<>();
-		
-		when(busienssServiceImpl.findAllCategories()).thenReturn(category);
-		busienssServiceImpl.findAllCategories();
-		
-		verify(busienssServiceImpl, times(1)).findAllCategories();
-		
+
+		when(businessCategoryRepository.findAll()).thenReturn(category);
+		businessRepository.findAll();
+
+		verify(businessRepository, times(1)).findAll();
+
 	}
-	
+
 	@Test
 	public void getBusinessServices() {
-		
+
 		List<BusinessServiceType> services = new ArrayList<>();
-		
-		when(busienssServiceImpl.findAllServices()).thenReturn(services);
-		busienssServiceImpl.findAllServices();
-		
-		verify(busienssServiceImpl, times(1)).findAllServices();
-		
+
+		when(businessServiceTypeRepository.findAll()).thenReturn(services);
+		businessRepository.findAll();
+
+		verify(businessRepository, times(1)).findAll();
+
 	}
 
 }

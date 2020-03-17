@@ -14,11 +14,9 @@
   <description>Data acess layer for the shop stack project</description>
   
   <!-- Java compiler version specification -->
-  <properties>
-	  <maven.compiler.source>12</maven.compiler.source>
-	  <maven.compiler.target>12</maven.compiler.target>
-  </properties>
-
+	<properties>
+		<java.version>13</java.version>
+	</properties>
 	<dependencies>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->

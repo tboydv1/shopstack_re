@@ -2,29 +2,31 @@ package com.shopstack.service.businessoutlet;
 
 
 
+import com.shopstack.model.business.BusinessOutlet;
+import com.shopstack.repository.business.BusinessOutletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shopstack.dao.business.BusinessDao;
-import com.shopstack.entities.business.BusinessOutlet;
+import javax.transaction.Transactional;
 
 @Service
+@Transactional
 public class BusinessOutletServiceImpl implements BusinessOutletService {
 	
 	@Autowired
-	private BusinessDao businessOutletImpl;
+	private BusinessOutletRepository businessOutletRepository;
 //
 	@Override
-	public void saveBusinessOutlet(BusinessOutlet newBusinessOutlet)
+	public void save(BusinessOutlet newBusinessOutlet)
 	{
-	
-		businessOutletImpl.save(newBusinessOutlet);		
+		businessOutletRepository.save(newBusinessOutlet);
 	}
 
    @Override
-  public BusinessOutlet findOutletById(int outletId) {
+  public BusinessOutlet findById(int outletId) {
 	
-	return businessOutletImpl.findOutletById(outletId);
-}
+	return businessOutletRepository.getOne(outletId);
+
+  }
 
 }

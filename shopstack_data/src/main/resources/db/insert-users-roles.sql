@@ -4,6 +4,12 @@ SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE table ss_user; 
 truncate table user_roles;
 SET FOREIGN_KEY_CHECKS = 1;
+use shopstack;
+
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE table ss_user;
+truncate table user_roles;
+SET FOREIGN_KEY_CHECKS = 1;
 
 
 INSERT INTO `shopstack`.`ss_user`(`ss_user_id`,`ss_first_name`, `ss_last_name`, `ss_email`, `ss_phone_number`, `ss_password`, `ss_enabled`, `ss_status`, `ss_token`)
@@ -25,3 +31,5 @@ VALUES
 (5,'ROLE_USER' , 'bisi@mail.com'),
 (6,'ROLE_USER' , 'carl@mail.com'),
 (7,'ROLE_USER' , 'kay@mail.com');
+
+

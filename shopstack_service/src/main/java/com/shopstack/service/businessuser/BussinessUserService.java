@@ -1,6 +1,8 @@
 package com.shopstack.service.businessuser;
 
-import com.shopstack.entities.businessuser.BusinessUser;
+import com.shopstack.model.businessuser.BusinessUser;
+
+import java.util.List;
 
 /**
  * @author oluwatobi
@@ -14,7 +16,9 @@ public interface BussinessUserService {
 	
 	public void activateUser(BusinessUser existingbusinessUser);
 	
-	public BusinessUser findUserByToken(String token);
+	public BusinessUser findByToken(String token);
 
 	public BusinessUser findByEmail(String userEmail);
+
+	public List<BusinessUser> findAll();
 }

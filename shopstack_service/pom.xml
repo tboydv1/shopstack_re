@@ -10,13 +10,14 @@
   <description>service project for the shopstack backend setup</description>
   
    <!-- Java compiler version specification -->
-  <properties>
-	  <maven.compiler.source>12</maven.compiler.source>
-	  <maven.compiler.target>12</maven.compiler.target>
-  </properties>
-  
+    <properties>
+        <java.version>13</java.version>
+    </properties>
+
+    <!-- *****Java version specified in parent project ***** -->
   
   <dependencies>
+
   	<dependency>
 	  	<groupId>com.shopstack</groupId>
 	   <artifactId>shopstack_data</artifactId>

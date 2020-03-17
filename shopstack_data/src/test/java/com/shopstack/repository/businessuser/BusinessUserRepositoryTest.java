@@ -72,4 +72,20 @@ class BusinessUserRepositoryTest {
 
     }
 
+    @Test
+    public void findUserByEmailTest(){
+
+        BusinessUser savedUser = businessUserRepository.findByEmail("tosho@mail.com");
+        assertThat(savedUser).isNotNull();
+        assertThat(savedUser.getFirstName()).isEqualTo("Tobi");
+    }
+
+    @Test
+    public void findUserByTokenTest(){
+
+        BusinessUser savedUser = businessUserRepository.findByToken("testtoken1");
+        assertThat(savedUser).isNotNull();
+        assertThat(savedUser.getFirstName()).isEqualTo("John");
+    }
+
 }

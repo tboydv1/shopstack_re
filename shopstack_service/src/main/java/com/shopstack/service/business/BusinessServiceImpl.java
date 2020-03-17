@@ -2,51 +2,48 @@ package com.shopstack.service.business;
 
 import java.util.List;
 
+import com.shopstack.model.business.Business;
+import com.shopstack.model.business.BusinessCategory;
+import com.shopstack.model.business.BusinessServiceType;
+import com.shopstack.repository.business.BusinessCategoryRepository;
+import com.shopstack.repository.business.BusinessRepository;
+import com.shopstack.repository.business.BusinessServiceTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shopstack.dao.business.BusinessDao;
-import com.shopstack.entities.business.Business;
-import com.shopstack.entities.business.BusinessCategory;
-import com.shopstack.entities.business.BusinessServiceType;
+import javax.transaction.Transactional;
+
 
 @Service
 public class BusinessServiceImpl implements BusinessService{
 
 	@Autowired
-	private BusinessDao businessDaoImpl;
+	private BusinessRepository businessRepository;
+
+	@Autowired
+	private BusinessCategoryRepository businessCategoryRepository;
+
+	@Autowired
+	private BusinessServiceTypeRepository businessServiceTypeRepository;
 	
 
 	@Override
-	public void saveBusiness(Business newBusiness) {
+	public void save(Business newBusiness) {
 		
-			businessDaoImpl.save(newBusiness);		
+		businessRepository.save(newBusiness);
 	}
 
 	@Override
-	public List<BusinessCategory> findAllCategories() {
+	public List<BusinessCategory> getAllCategories() {
 		
-		return businessDaoImpl.findAll();
+		return businessCategoryRepository.findAll();
 	}
 
 	@Override
-	public List<BusinessServiceType> findAllServices() {
+	public List<BusinessServiceType> getAllServices() {
 			
-		return businessDaoImpl.findAllServiceTypes();
+		return businessServiceTypeRepository.findAll();
 	}
 
-	@Override
-	public BusinessServiceType findBusinessServiceType(String nameString) {
-			
-		return businessDaoImpl.findBusinessServiceTypeByName(nameString);
-	}
-
-	@Override
-	public BusinessCategory findBusinessCategory(String categoryName) {
-		// TODO Auto-generated method stub
-		return businessDaoImpl.findBusinessCategoryByName(categoryName);
-	}
-	
-	
 
 }

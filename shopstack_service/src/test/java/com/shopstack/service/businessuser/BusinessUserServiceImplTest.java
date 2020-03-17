@@ -2,56 +2,48 @@ package com.shopstack.service.businessuser;
 
 import static org.mockito.Mockito.mock;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.shopstack.ServiceConfig;
+import com.shopstack.model.businessuser.BusinessUser;
+import com.shopstack.repository.businessuser.BusinessUserRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
-
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import com.shopstack.entities.businessuser.BusinessUser;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author oluwatobi
  *
  */
-@ContextConfiguration("classpath:service-layer-context.xml")
-@RunWith(SpringRunner.class)
+@SpringBootTest(classes = ServiceConfig.class)
 public class BusinessUserServiceImplTest {
 
 	
 	@Mock
-	private BussinessUserService businessUserServiceImplMock;
+	private BusinessUserRepository businessUserRepository;
+
+	BusinessUser newUser;
 	
-	
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
-		
-		businessUserServiceImplMock = mock(BussinessUserService.class);
+		newUser = new BusinessUser();
+		businessUserRepository = mock(BusinessUserRepository.class);
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 	}
 	
 	@Test
 	public void saveNewUserTest() throws EmailExistsException {
+
+		when(businessUserRepository.save(isA(BusinessUser.class))).thenReturn(newUser);
 		
-		BusinessUser newUser = new BusinessUser();
+		businessUserRepository.save(newUser);
 		
-		when(businessUserServiceImplMock.registerNewUserAccount(isA(BusinessUser.class),
-				isA(String.class))).thenReturn(newUser);
-		
-		businessUserServiceImplMock.registerNewUserAccount(newUser, "ROLE_USER");
-		
-		verify(businessUserServiceImplMock, times(1)).registerNewUserAccount(newUser, "ROLE_USER");
+		verify(businessUserRepository, times(1)).save(newUser);
 	}
-	
-
-
-	
 
 }

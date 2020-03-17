@@ -1,10 +1,10 @@
 package com.shopstack.service.businessoutlet;
 
-import com.shopstack.entities.business.BusinessOutlet;
+import com.shopstack.model.business.BusinessOutlet;
 
 public interface BusinessOutletService {
 	
-	public void saveBusinessOutlet(BusinessOutlet newBusinessOutlet);
+	public void save(BusinessOutlet newBusinessOutlet);
 	
-	public BusinessOutlet findOutletById(int outletId);
+	public BusinessOutlet findById(int outletId);
 }
